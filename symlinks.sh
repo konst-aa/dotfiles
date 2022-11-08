@@ -1,9 +1,8 @@
-for i in $(ls config); do
-	ln -s $(pwd)/config/$i ~/.config/$i
-	echo "symlinked $i into .config"
-done
+unlink ~/.config
+ln -s $(pwd)/config ~/.config
+echo "symlinked .config"
 
-rm ~/.zshrc
+unlink ~/.zshrc
 ln -s $(pwd)/zshrc ~/.zshrc
 echo "symlinked zshrc"
 
