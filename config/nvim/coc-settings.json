@@ -1,0 +1,9 @@
+{
+	"languageserver": {
+		"solidity": {
+			"command": "solc --lsp",
+			"filetypes": ["sol"]}
+	},
+	"suggest.noselect": true
+}
+
