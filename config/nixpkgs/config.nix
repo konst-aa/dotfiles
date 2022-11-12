@@ -1,15 +1,17 @@
 {
   packageOverrides = pkgs: with pkgs; {
-    kasdf = pkgs.buildEnv {
-      name = "kasdf";
+    konst = pkgs.buildEnv {
+      name = "konst";
       paths = [
-        fzf
+        cyclone-scheme
         elixir
+        fzf
         neovim
-        oh-my-zsh
         nodejs
+        python310
       ];
     };
   };
 }
+
 

@@ -57,8 +57,11 @@ call plug#end()
 " 'cd' towards the directory in which the current file is edited
 " but only change the path for the current window
 nnoremap <leader>cd :lcd %:h<CR>
-" Open files located in the same dir in with the current file is edited
-nnoremap <leader>ew :e <C-R>=expand("%:.:h") . "/"<CR>
+
+"Tama McGlinn's comment on Primagen's channel https://www.youtube.com/watch?v=hJzqEAf2U4I
+nnoremap <leader>ex :!chmod +x %<CR>
+
+nnoremap <leader>ew :noh<CR>
 
 command-nargs=* F FZF <args>
 
@@ -79,8 +82,9 @@ let g:material_theme_style = 'ocean'
 colorscheme material
 
 " aesthetics
-set number
+set number relativenumber
 
+hi LineNr guifg=#ffffff
 " May need for vim (not neovim) since coc.nvim calculate byte offset by count
 " utf-8 byte sequence.
 set encoding=utf-8

@@ -1,9 +1,14 @@
-unlink ~/.config
-ln -s $(pwd)/config ~/.config
-echo "symlinked .config"
+pairs=(
+	"config .config"
+	"zshrc .zshrc"
+)
 
-unlink ~/.zshrc
-ln -s $(pwd)/zshrc ~/.zshrc
-echo "symlinked zshrc"
+for i in "${pairs[@]}"
+do
+	set $i
+	unlink ~/$2
+	ln -s $(pwd)/$1 ~/$2
+	echo "symlinked $1"
+done
 
 echo "symlinks made"

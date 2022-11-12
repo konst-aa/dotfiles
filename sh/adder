@@ -1,0 +1,44 @@
+#!/usr/bin/python
+# only works if the config has at least 1 item and follows my format...
+
+import os
+import getopt, sys
+
+home = os.getenv('HOME')
+opts, args = getopt.getopt(sys.argv[2:],"i:d:", [])
+opts = dict(opts)
+profile = sys.argv[1]
+
+loc =  "/.config/nixpkgs/config.nix"
+def until(i, cond, parts):
+    while i < len(parts) and not cond(parts[i]):
+        i += 1
+    if i >= len(parts):
+        raise(BaseException("failed until looking for text"))
+    return i
+
+with open((home if home else "") + loc, "r") as f:
+    parts = f.readlines()
+    i = until(0, lambda x: profile in x, parts)
+    i = until(i, lambda x: "paths" in x and "[" in x, parts)
+    left = []
+    right = []
+    start = i
+    end = until(i, lambda x: "]" in x, parts)
+    tabs = parts[start+1].count(" ")
+    packages = list(map(lambda x: x.strip(), parts[start+1:end]))
+
+    if "-i" in opts:
+        packages += [opts["-i"]]
+    if "-d" in opts:
+        try:
+            packages.remove(opts["-d"])
+        except ValueError as ve:
+            print(ve)
+            print("you dont have "+ opts['-d'] + " in the config.nix")
+
+    packages.sort()
+    packages = list(map(lambda x: (' ' * tabs) + x + "\n", packages))
+
+    with open((home if home else "") + loc, "w") as n:
+        n.write("".join(parts[:start+1] + packages + parts[end:]))
