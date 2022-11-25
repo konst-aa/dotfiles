@@ -1,3 +1,4 @@
+; https://github.com/wasamasa/breadline/blob/master/examples/.csirc
 (import (chicken load))
 (load-verbose #f)
 (let ()

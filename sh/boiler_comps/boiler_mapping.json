@@ -1,0 +1,1 @@
+{"py-docopt": {"type": "stub", "path": "scripting/docopt.py"}, "nix-shebang": {"type": "config", "path": "scripting/nix_shebang.py"}, "py-nix-script": {"type": "stub", "path": "scripts/py_nix_script.py"}}

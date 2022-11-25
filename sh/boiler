@@ -1,66 +1,142 @@
 #!/usr/bin/env nix-shell
-#! nix-shell --pure -i python -p python3 pythonPackages.docopt
+#! nix-shell --pure --keep BOILER_COMPS -i python -p python3 pythonPackages.docopt
 
 __doc__ = """Boiler.
 Concatenates and configures scripts and projects.
 
 Usage:
+  boiler cc <comp>... [--out=<filename>]
+  boiler add (stub | config) <alias> <src> <relative-boiler-path>
+  boiler remove <comp>...
+  boiler tinker <comp>... [--cp]
   boiler ls [--stub | --config] [--loc]
-  boiler cc [-o=<filename>] <comp>...
   boiler (-h | --help)
   boiler --version
 
 Options:
-  ls Lists all stubs and config scripts.
-  [--stub | --config] Print only stubs or configs.
-  [--loc] Print the filenames instead of aliases.
-  cc Concatenates stubs and outputs them to filename.
-  [-o=<filename>] Output filename, if not provided, writes to stdout.
-  (-h | --help)     Show this screen.
-  --version     Show version.
-
+  cc                    Concatenates stubs and outputs them to filename.
+  [--out=<filename>]       Output filename, if not provided, writes to stdout.
+  add (stub | config)   Copies a stub or a config to boiler_comps and aliases it in the json.
+  remove <comp>...      Deletes components.
+  tinker <comp>...      Symlinks components into the current directory.
+  [--cp]                Copies components instead.
+  ls                    Lists all stubs and config scripts.
+  [--stub | --config]   Print only stubs or configs.
+  [--loc]               Print the paths instead of aliases.
+  (-h | --help)         Show this screen.
+  --version             Show version.
 """
+
 from docopt import docopt
 import importlib
+import json
 import os
+import shutil
 
-COMPS_DIR = f"{os.path.dirname(os.path.realpath(__file__))}/boiler_comps"
-STUB_MAPPING = {"py-docopt": "scripting/docopt.py"}
-CONFIG_MAPPING = {"nix-shebang": "scripting/nix_shebang.py"}
+# im so sorry for putting this here, and constants are supposed to be constant
+def _read(f_path, encoding="utf8"):
+    with open(f_path, "r", encoding=encoding) as f:
+        return f.read()
+
+
+BOILER_COMPS = os.environ["BOILER_COMPS"]
+BOILER_MAPPING_PATH = f"{BOILER_COMPS}/boiler_mapping.json"
+BOILER_MAPPING = json.loads(_read(BOILER_MAPPING_PATH))
 
 
 def cc(args):
     pieces = []
     for comp in args["<comp>"]:
-        if comp in STUB_MAPPING:
-            with open(f"{COMPS_DIR}/{STUB_MAPPING[comp]}", "r") as f:
-                pieces += [f.read()]
-        elif comp in CONFIG_MAPPING:
-            mod_name = os.path.splitext(CONFIG_MAPPING[comp])[0].replace("/", ".")
-            print(mod_name)
-            config = importlib.import_module(f"boiler_comps.{mod_name}")
-            pieces += [config.run()]
-    if args["-o"]:
-        with open(args["-o"], "w") as out:
+        if comp not in BOILER_MAPPING:
+            continue
+        elem = BOILER_MAPPING[comp]
+        match elem["type"]:
+            case "stub":
+                pieces += [_read(f"{BOILER_COMPS}/{elem['path']}")]
+            case "config":
+                mod_name = os.path.splitext(elem["path"])[0].replace("/", ".")
+                config = importlib.import_module(f"boiler_comps.{mod_name}")
+                pieces += [config.run()]
+    if args["--out"]:
+        with open(args["--out"], "w") as out:
             out.writelines(pieces)
     else:
         print("\n".join(pieces))
 
 
+def add(args):
+    # prepare dirs
+    rel_boiler = args["<relative-boiler-path>"]
+    output_path = f"{BOILER_COMPS}/{rel_boiler}"
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+    # spam __init__ everywhere
+    for (root, dirs, files) in os.walk(BOILER_COMPS):
+        for dr in dirs:
+            init = f"{root}/{dr}/__init__.py"
+            if not os.path.exists(init):
+                with open(init, "a") as f:
+                    pass
+
+    # copy and update
+    t = "stub" if args["stub"] else "config"
+    shutil.copy(args["<src>"], output_path)
+    new_mapping = BOILER_MAPPING | {args["<alias>"]: {"type": t, "path": rel_boiler}}
+
+    with open(BOILER_MAPPING_PATH, "w") as o:
+        json.dump(new_mapping, o)
+
+
+def remove(args):
+    targets = args["<comp>"]
+    to_remove = set()
+    for comp in targets:
+        if comp not in BOILER_MAPPING:
+            print(f"{comp} not found in component mapping.")
+            continue
+        comp_path = f"{BOILER_COMPS}/{BOILER_MAPPING[comp]['path']}"
+        os.remove(comp_path)
+        comp_dir = comp_path
+        while comp_dir != BOILER_COMPS:
+            comp_dir = os.path.dirname(comp_dir)
+            if os.listdir(comp_dir) == ["__init__.py"]:
+                os.remove(f"{comp_dir}/__init__.py")
+                os.rmdir(comp_dir)
+        to_remove.add(comp)
+    new_mapping = {
+        key: val for key, val in BOILER_MAPPING.items() if key not in to_remove
+    }
+    with open(BOILER_MAPPING_PATH, "w") as o:
+        json.dump(new_mapping, o)
+
+
+def tinker(args):
+    targets = args["<comp>"]
+    for comp in targets:
+        if comp not in BOILER_MAPPING:
+            print(f"{comp} not found in component mapping.")
+            continue
+        path = f"{BOILER_COMPS}/{BOILER_MAPPING[comp]['path']}"
+        target = os.path.split(path)[1]
+        if os.path.exists(target):
+            os.remove(target)
+        if args["--cp"]:
+            shutil.copy(path, target)
+        else:
+            os.symlink(path, target)
+
+
 def ls(args):
-    joined_rev_mappings = dict(
-        map(lambda tup: (tup[1], tup[0]), {**STUB_MAPPING, **CONFIG_MAPPING}.items())
-    )
-    stuff = joined_rev_mappings.keys()
-    mapping = False
+    stuff = BOILER_MAPPING.keys()
+    t = False
     if args["--stub"]:
-        mapping = set(STUB_MAPPING.values())
+        t = "stub"
     if args["--config"]:
-        mapping = set(CONFIG_MAPPING.values())
-    if mapping:
-        stuff = filter(lambda maybe: maybe in mapping, stuff)
-    if not args["--loc"]:
-        stuff = set(map(lambda filename: joined_rev_mappings[filename], stuff))
+        t = "config"
+    if t:
+        stuff = filter(lambda alias: BOILER_MAPPING[alias]["type"] == t, stuff)
+    if args["--loc"]:
+        stuff = set(map(lambda alias: BOILER_MAPPING[alias]["path"], stuff))
     print(" ".join(stuff))
 
 
@@ -69,5 +145,11 @@ if __name__ == "__main__":
 
     if args["cc"]:
         cc(args)
+    if args["add"]:
+        add(args)
+    if args["remove"]:
+        remove(args)
+    if args["tinker"]:
+        tinker(args)
     if args["ls"]:
         ls(args)

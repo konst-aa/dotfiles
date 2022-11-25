@@ -1,0 +1,3 @@
+{
+  "nix-shebang": "scripting/nix_shebang.py"
+}
