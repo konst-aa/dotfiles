@@ -10,12 +10,18 @@ opts = dict(opts)
 profile = sys.argv[1]
 
 loc =  "/.config/nixpkgs/config.nix"
+
 def until(i, cond, parts):
     while i < len(parts) and not cond(parts[i]):
         i += 1
     if i >= len(parts):
         raise(BaseException("failed until looking for text"))
     return i
+
+if not ("-i" in opts or "-d" in opts):
+    print("usage:")
+    print("adder <profile> (-i | -d) <package>")
+    sys.exit(0)
 
 with open((home if home else "") + loc, "r") as f:
     parts = f.readlines()
@@ -39,6 +45,5 @@ with open((home if home else "") + loc, "r") as f:
 
     packages.sort()
     packages = list(map(lambda x: (' ' * tabs) + x + "\n", packages))
-
     with open((home if home else "") + loc, "w") as n:
         n.write("".join(parts[:start+1] + packages + parts[end:]))

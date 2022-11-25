@@ -1,9 +1,12 @@
 {
-	"languageserver": {
-		"solidity": {
-			"command": "solc --lsp",
-			"filetypes": ["sol"]}
-	},
-	"suggest.noselect": true
+  "coc.preferences.formatOnSaveFiletypes": ["json", "markdown", "python"],
+  "languageserver": {
+    "solidity": {
+      "command": "solc --lsp",
+      "filetypes": ["sol"]
+    }
+  },
+  "suggest.noselect": true,
+  "python.formatting.provider": "black",
+  "python.formatting.blackPath": "~/.nix-profile/bin/black"
 }
-

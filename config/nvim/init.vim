@@ -3,7 +3,6 @@ lua << EOF
 EOF
 
 "plug autoinstaller
-
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -49,6 +48,18 @@ call plug#begin()
   Plug 'junegunn/fzf.vim'
 
   Plug 'LnL7/vim-nix'
+
+  Plug 'vim-airline/vim-airline'
+
+  Plug 'vim-airline/vim-airline-themes'
+
+  Plug 'vimsence/vimsence'
+
+  Plug 'jiangmiao/auto-pairs', { 'branch':'master' }
+
+  Plug 'tpope/vim-surround', { 'branch':'master' }
+
+  Plug 'tpope/vim-repeat', { 'branch':'master' }
 call plug#end()
 
 "keybinds
@@ -61,11 +72,36 @@ nnoremap <leader>cd :lcd %:h<CR>
 "Tama McGlinn's comment on Primagen's channel https://www.youtube.com/watch?v=hJzqEAf2U4I
 nnoremap <leader>ex :!chmod +x %<CR>
 
+" https://github.com/dowlandaiello/dotfiles/blob/master/.config/nvim/init.vim
+noremap <leader>s H
+noremap <leader>S L
+map L $
+map H ^
+
+" https://vi.stackexchange.com/questions/2129/fastest-way-to-switch-to-a-buffer-in-vim
+nnoremap <leader>b :ls<CR>:b<Space>
+
+
+" my stuff
+map <leader>l o<C-[>
+map <leader>L O<C-[>
+map <leader>p <leader>lgP
+map <leader>P <leader>LP
+
 nnoremap <leader>ew :noh<CR>
 
-command-nargs=* F FZF <args>
+nnoremap <leader>ff :FZF<CR>
 
-"colors
+nnoremap + :Vex<CR>
+nnoremap - :bd NetrwTreeListing<CR>
+
+nnoremap <leader>fo :Format<CR>
+
+" more buffer stuff
+nnoremap <leader>un :bn<CR>
+nnoremap <leader>up :bp<CR>
+nnoremap <leader>ud :bd<CR>
+
 " For Neovim 0.1.3 and 0.1.4 - https://github.com/neovim/neovim/pull/2198
 if (has('nvim'))
   let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
@@ -81,10 +117,34 @@ endif
 let g:material_theme_style = 'ocean'
 colorscheme material
 
-" aesthetics
-set number relativenumber
+" Airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
+"Vimsense
+"let g:vimsence_client_id = '439476230543245312'
+let g:vimsence_small_text = 'NeoVim'
+let g:vimsence_small_image = 'neovim'
+"let g:vimsence_editing_details = 'Editing: {}'
+"let g:vimsence_editing_state = 'Working on: {}'
+"let g:vimsence_file_explorer_text = 'In NERDTree'
+"let g:vimsence_file_explorer_details = 'Looking for files'
+"let g:vimsence_custom_icons = {'filetype': 'iconname'}
+
+"netrw from https://shapeshed.com/vim-netrw/
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+let g:netrw_bufsettings = 'noshowmode number relativenumberhi LineNr guifg=#ffffff'
+
+
+" aesthetics
+set noshowmode
+set number relativenumber
 hi LineNr guifg=#ffffff
+
 " May need for vim (not neovim) since coc.nvim calculate byte offset by count
 " utf-8 byte sequence.
 set encoding=utf-8

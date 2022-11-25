@@ -1,6 +1,7 @@
 pairs=(
 	"config .config"
 	"zshrc .zshrc"
+	"csirc.scm .csirc"
 )
 
 for i in "${pairs[@]}"

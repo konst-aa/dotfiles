@@ -1,0 +1,73 @@
+#!/usr/bin/env nix-shell
+#! nix-shell --pure -i python -p python3 pythonPackages.docopt
+
+__doc__ = """Boiler.
+Concatenates and configures scripts and projects.
+
+Usage:
+  boiler ls [--stub | --config] [--loc]
+  boiler cc [-o=<filename>] <comp>...
+  boiler (-h | --help)
+  boiler --version
+
+Options:
+  ls Lists all stubs and config scripts.
+  [--stub | --config] Print only stubs or configs.
+  [--loc] Print the filenames instead of aliases.
+  cc Concatenates stubs and outputs them to filename.
+  [-o=<filename>] Output filename, if not provided, writes to stdout.
+  (-h | --help)     Show this screen.
+  --version     Show version.
+
+"""
+from docopt import docopt
+import importlib
+import os
+
+COMPS_DIR = f"{os.path.dirname(os.path.realpath(__file__))}/boiler_comps"
+STUB_MAPPING = {"py-docopt": "scripting/docopt.py"}
+CONFIG_MAPPING = {"nix-shebang": "scripting/nix_shebang.py"}
+
+
+def cc(args):
+    pieces = []
+    for comp in args["<comp>"]:
+        if comp in STUB_MAPPING:
+            with open(f"{COMPS_DIR}/{STUB_MAPPING[comp]}", "r") as f:
+                pieces += [f.read()]
+        elif comp in CONFIG_MAPPING:
+            mod_name = os.path.splitext(CONFIG_MAPPING[comp])[0].replace("/", ".")
+            print(mod_name)
+            config = importlib.import_module(f"boiler_comps.{mod_name}")
+            pieces += [config.run()]
+    if args["-o"]:
+        with open(args["-o"], "w") as out:
+            out.writelines(pieces)
+    else:
+        print("\n".join(pieces))
+
+
+def ls(args):
+    joined_rev_mappings = dict(
+        map(lambda tup: (tup[1], tup[0]), {**STUB_MAPPING, **CONFIG_MAPPING}.items())
+    )
+    stuff = joined_rev_mappings.keys()
+    mapping = False
+    if args["--stub"]:
+        mapping = set(STUB_MAPPING.values())
+    if args["--config"]:
+        mapping = set(CONFIG_MAPPING.values())
+    if mapping:
+        stuff = filter(lambda maybe: maybe in mapping, stuff)
+    if not args["--loc"]:
+        stuff = set(map(lambda filename: joined_rev_mappings[filename], stuff))
+    print(" ".join(stuff))
+
+
+if __name__ == "__main__":
+    args = docopt(__doc__, version="Boiler 0.1")
+
+    if args["cc"]:
+        cc(args)
+    if args["ls"]:
+        ls(args)

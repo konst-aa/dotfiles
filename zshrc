@@ -20,4 +20,5 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 
 export FZF_DEFAULT_COMMAND="find ."
 export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}
-export PATH=$PATH:~/dotfiles/sh
+export NIX_CONF_DIR=~/.config/nixpkgs
+export PATH=$PATH:~/dotfiles/sh:~/.nix-profile/bin
