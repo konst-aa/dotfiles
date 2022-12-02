@@ -4,19 +4,21 @@
 import os
 import getopt, sys
 
-home = os.getenv('HOME')
-opts, args = getopt.getopt(sys.argv[2:],"i:d:", [])
+home = os.getenv("HOME")
+opts, args = getopt.getopt(sys.argv[2:], "i:d:", [])
 opts = dict(opts)
 profile = sys.argv[1]
 
-loc =  "/.config/nixpkgs/config.nix"
+loc = "/.config/nixpkgs/config.nix"
+
 
 def until(i, cond, parts):
     while i < len(parts) and not cond(parts[i]):
         i += 1
     if i >= len(parts):
-        raise(BaseException("failed until looking for text"))
+        raise (BaseException("failed until looking for text"))
     return i
+
 
 if not ("-i" in opts or "-d" in opts):
     print("usage:")
@@ -31,8 +33,8 @@ with open((home if home else "") + loc, "r") as f:
     right = []
     start = i
     end = until(i, lambda x: "]" in x, parts)
-    tabs = parts[start+1].count(" ")
-    packages = list(map(lambda x: x.strip(), parts[start+1:end]))
+    tabs = parts[start + 1].count(" ")
+    packages = list(map(lambda x: x.strip(), parts[start + 1 : end]))
 
     if "-i" in opts:
         packages += [opts["-i"]]
@@ -41,9 +43,9 @@ with open((home if home else "") + loc, "r") as f:
             packages.remove(opts["-d"])
         except ValueError as ve:
             print(ve)
-            print("you dont have "+ opts['-d'] + " in the config.nix")
-
+            print("you dont have " + opts["-d"] + " in the config.nix")
+    packages = list(set(packages))
     packages.sort()
-    packages = list(map(lambda x: (' ' * tabs) + x + "\n", packages))
+    packages = list(map(lambda x: (" " * tabs) + x + "\n", packages))
     with open((home if home else "") + loc, "w") as n:
-        n.write("".join(parts[:start+1] + packages + parts[end:]))
+        n.write("".join(parts[: start + 1] + packages + parts[end:]))

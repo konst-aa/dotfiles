@@ -15,7 +15,7 @@ Usage:
 
 Options:
   cc                    Concatenates stubs and outputs them to filename.
-  [--out=<filename>]       Output filename, if not provided, writes to stdout.
+  [--out=<filename>]    Output filename, if not provided, writes to stdout.
   add (stub | config)   Copies a stub or a config to boiler_comps and aliases it in the json.
   remove <comp>...      Deletes components.
   tinker <comp>...      Symlinks components into the current directory.
@@ -81,10 +81,10 @@ def add(args):
     # copy and update
     t = "stub" if args["stub"] else "config"
     shutil.copy(args["<src>"], output_path)
-    new_mapping = BOILER_MAPPING | {args["<alias>"]: {"type": t, "path": rel_boiler}}
 
+    new_mapping = BOILER_MAPPING | {args["<alias>"]: {"type": t, "path": rel_boiler}}
     with open(BOILER_MAPPING_PATH, "w") as o:
-        json.dump(new_mapping, o)
+        json.dump(new_mapping, o, indent=2)
 
 
 def remove(args):
@@ -103,11 +103,12 @@ def remove(args):
                 os.remove(f"{comp_dir}/__init__.py")
                 os.rmdir(comp_dir)
         to_remove.add(comp)
+
     new_mapping = {
         key: val for key, val in BOILER_MAPPING.items() if key not in to_remove
     }
     with open(BOILER_MAPPING_PATH, "w") as o:
-        json.dump(new_mapping, o)
+        json.dump(new_mapping, o, indent=2)
 
 
 def tinker(args):

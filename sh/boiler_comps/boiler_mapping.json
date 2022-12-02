@@ -1,1 +1,22 @@
-{"py-docopt": {"type": "stub", "path": "scripting/docopt.py"}, "nix-shebang": {"type": "config", "path": "scripting/nix_shebang.py"}, "py-nix-script": {"type": "stub", "path": "scripts/py_nix_script.py"}}
+{
+  "py-docopt": {
+    "type": "stub",
+    "path": "scripting/docopt.py"
+  },
+  "nix-shebang": {
+    "type": "config",
+    "path": "scripting/nix_shebang.py"
+  },
+  "cpp-cf": {
+    "type": "stub",
+    "path": "cc/cpp_cf.cpp"
+  },
+  "py-nix-script": {
+    "type": "stub",
+    "path": "scripting/py_nix_script.py"
+  },
+  "py-cf": {
+    "type": "stub",
+    "path": "cc/py_cf.py"
+  }
+}

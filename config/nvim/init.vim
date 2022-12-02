@@ -144,6 +144,7 @@ let g:netrw_bufsettings = 'noshowmode number relativenumberhi LineNr guifg=#ffff
 set noshowmode
 set number relativenumber
 hi LineNr guifg=#ffffff
+set pumheight=12
 
 " May need for vim (not neovim) since coc.nvim calculate byte offset by count
 " utf-8 byte sequence.
