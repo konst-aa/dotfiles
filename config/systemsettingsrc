@@ -1,0 +1,14 @@
+[MainWindow]
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAAAAA/wAAAK8AAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+eDP-1-1=eDP-1-1
+eDP-1-1 XPosition 1920x1080 eDP-1-1=450
+eDP-1-1 YPosition 1920x1080 eDP-1-1=182
+eDP1=eDP1
+eDP1 XPosition 1920x1080 eDP1=450
+eDP1 YPosition 1920x1080 eDP1=182
+
+[Open-with settings]
+CompletionMode=1
+History=kitty

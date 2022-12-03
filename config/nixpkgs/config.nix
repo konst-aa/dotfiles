@@ -5,6 +5,11 @@ let
 in {
   allowBroken = true;
   packageOverrides = pkgs: with pkgs; {
+    myNvim = neovim.override {
+      configure = {
+        customRC = builtins.readFile "/home/konst/.config/nvim/init.vim";
+      };
+    };
     konst = pkgs.buildEnv {
       name = "konst";
       paths = [
@@ -15,6 +20,7 @@ in {
         elixir
         fzf
         ghc
+        lsd
         neovim
         nodejs
         oh-my-zsh
@@ -23,6 +29,8 @@ in {
         rlwrap
         tmux
         tree
+        vivid
+        zsh
       ];
    };
   };
