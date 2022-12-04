@@ -1,9 +1,38 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["json", "markdown", "python"],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "json",
+    "haskell",
+    "markdown",
+    "python"
+  ],
   "languageserver": {
     "solidity": {
       "command": "solc --lsp",
       "filetypes": ["sol"]
+    },
+    "haskell": {
+      "command": "haskell-language-server-wrapper",
+      "args": ["--lsp"],
+      "rootPatterns": [
+        "*.cabal",
+        "stack.yaml",
+        "cabal.project",
+        "package.yaml",
+        "hie.yaml"
+      ],
+      "filetypes": ["haskell", "lhaskell"],
+      // Settings are optional, here are some example values
+      "settings": {
+        "haskell": {
+          "checkParents": "CheckOnSave",
+          "checkProject": true,
+          "maxCompletions": 40,
+          "formattingProvider": "ormolu",
+          "plugin": {
+            "stan": { "globalOn": true }
+          }
+        }
+      }
     }
   },
   "suggest.noselect": true,

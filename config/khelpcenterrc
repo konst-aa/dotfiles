@@ -1,7 +1,18 @@
+[HTML Settings]
+AutomaticDetectionLanguage=1
+
+[Layout]
+CurrentTab=Search
+
 [MainWindow]
-RestorePositionForNextInstance=false
 State=AAAA/wAAAAD9AAAAAAAAAyAAAAH1AAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAA/////wAAAAAAAAAA
 ToolBarsMovable=Disabled
 eDP-1-1=eDP-1-1
-eDP-1-1 XPosition 1920x1080 eDP-1-1=560
+eDP-1-1 XPosition 1920x1080 eDP-1-1=563
 eDP-1-1 YPosition 1920x1080 eDP-1-1=232
+
+[MainWindowState]
+Splitter=220,579
+
+[Search]
+ScopeSelection=0

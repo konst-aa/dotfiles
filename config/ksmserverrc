@@ -2,13 +2,15 @@
 update_info=ksmserver_update_loginMode_value.upd:ksmserver_update_loginMode_value_default_enum
 
 [LegacySession: saved at previous logout]
-count=0
+clientMachine1=localhost
+command1=firefox
+count=1
 
 [Session: saved at previous logout]
-clientId1=10e169786f000166985233500000151150006
+clientId1=101ba19c14c10e000167008593700000016150004
 count=1
-discardCommand1[$e]=rm,$HOME/.config/session/konsole_10e169786f000166985233500000151150006_1669852633_128801
-program1=/run/current-system/sw/bin/konsole
-restartCommand1=/run/current-system/sw/bin/konsole,-session,10e169786f000166985233500000151150006_1669852633_128801,-name,konsole
+discardCommand1[$e]=rm,$HOME/.config/session/systemsettings_101ba19c14c10e000167008593700000016150004_1670086721_871846
+program1=/run/current-system/sw/bin/systemsettings
+restartCommand1=/run/current-system/sw/bin/systemsettings,-session,101ba19c14c10e000167008593700000016150004_1670086721_871846,-name,systemsettings
 restartStyleHint1=0
 userId1=konst

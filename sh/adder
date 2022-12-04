@@ -1,5 +1,5 @@
-#!/usr/bin/python
-# only works if the config has at least 1 item and follows my format...
+#! /usr/bin/env nix-shell
+#! nix-shell -i python3 -p python3
 
 import os
 import getopt, sys

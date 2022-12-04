@@ -1,9 +1,10 @@
 # https://stackoverflow.com/a/2534676
 
-PROMPT='$%F{202}%m:$%F{208} %T %B%30<..<%~%b %(!.#.>) %F{white}'
+PROMPT='%F{202}<%n@%m>%F{208} %T %B%30<..<%~%b %(!.#.>) %F{white}'
 TERM=xterm-256color
 
 plugins=(
+  ssh-agent
 	fzf
 )
 
@@ -15,6 +16,7 @@ alias upgrade-os="sudo nixos-rebuild switch"
 alias edit-os="sudo nvim /etc/nixos/configuration.nix"
 alias edit-pkgs="nvim ~/.config/nixpkgs/config.nix"
 alias edit-nvim="nvim ~/.config/nvim/init.vim && uenv myNvim"
+alias csi="nix-shell ~/.config/nixpkgs/egg-shell.nix --command csi"
 # alias ls='lsd'
 
 # disable sort when completing `git checkout`
@@ -38,5 +40,5 @@ fi
 export FZF_DEFAULT_COMMAND="find ."
 export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}
 export NIX_CONF_DIR=~/.config/nixpkgs
-export PATH=$PATH:~/dotfiles/sh:~/.nix-profile/bin
+export PATH=$PATH:~/dotfiles/sh:~/.nix-profile/bin:~/.cabal/bin
 export BOILER_COMPS=~/dotfiles/sh/boiler_comps

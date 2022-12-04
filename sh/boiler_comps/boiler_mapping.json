@@ -18,5 +18,9 @@
   "py-cf": {
     "type": "stub",
     "path": "cc/py_cf.py"
+  },
+  "hs-cc": {
+    "type": "stub",
+    "path": "cc/hsCC.hs"
   }
 }

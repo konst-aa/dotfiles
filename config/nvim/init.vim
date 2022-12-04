@@ -60,6 +60,8 @@ call plug#begin()
   Plug 'tpope/vim-surround', { 'branch':'master' }
 
   Plug 'tpope/vim-repeat', { 'branch':'master' }
+  
+  Plug 'alx741/vim-hindent'
 call plug#end()
 
 "keybinds
@@ -139,6 +141,8 @@ let g:netrw_altv = 1
 let g:netrw_winsize = 25
 let g:netrw_bufsettings = 'noshowmode number relativenumberhi LineNr guifg=#ffffff'
 
+
+set expandtab
 
 " aesthetics
 set noshowmode

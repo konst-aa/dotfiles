@@ -4,6 +4,11 @@ let
  eggs = import ./profile-eggs.nix { inherit pkgs stdenv; };
 in {
   allowBroken = true;
+  allowUnfree = true;
+  permittedInsecurePackages = [
+    "adobe-reader-9.5.5"
+  ];
+  allowUnsupportedSystem = true;
   packageOverrides = pkgs: with pkgs; {
     myNvim = neovim.override {
       configure = {
@@ -14,22 +19,23 @@ in {
       name = "konst";
       paths = [
         black
+        cabal-install
         chicken
         clang-tools
         egg2nix
         elixir
         fzf
         ghc
+        haskell-language-server
         lsd
+        neofetch
         neovim
         nodejs
         oh-my-zsh
         python310
-        racket
         rlwrap
         tmux
         tree
-        vivid
         zsh
       ];
    };

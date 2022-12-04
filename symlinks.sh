@@ -1,4 +1,5 @@
 pairs=(
+	"cabal_config .cabal/config"
 	"ssh_config .ssh/config"
 	"ls_colors.zsh .ls_colors.zsh"
 	"config .config"
