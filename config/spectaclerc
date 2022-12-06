@@ -3,5 +3,5 @@ update_info=spectacle_clipboard.upd:clipboard-settings-change,spectacle_remember
 
 [GuiConfig]
 captureMode=5
-cropRegion=384,332,1002,489
+cropRegion=2,508,1468,202
 window-position=50,0

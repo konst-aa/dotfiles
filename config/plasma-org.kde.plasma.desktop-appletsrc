@@ -109,6 +109,17 @@ PreloadWeight=42
 [Containments][2][General]
 AppletOrder=3;4;5;6;7;18;19
 
+[Containments][22]
+ItemGeometries-1920x1080=
+ItemGeometriesHorizontal=
+activityId=0f1ed0c6-23b9-47b5-ab7a-bdde947989e6
+formfactor=0
+immutability=1
+lastScreen=1
+location=0
+plugin=org.kde.plasma.folder
+wallpaperplugin=org.kde.image
+
 [Containments][8]
 activityId=
 formfactor=2

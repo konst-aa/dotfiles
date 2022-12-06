@@ -5,6 +5,8 @@
     "markdown",
     "python"
   ],
+  "rust-analyzer.enable": true,
+  "rust-analyzer.server.path": "~/.nix-profile/bin/rust-analyzer",
   "languageserver": {
     "solidity": {
       "command": "solc --lsp",

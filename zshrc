@@ -1,11 +1,17 @@
 # https://stackoverflow.com/a/2534676
 
 PROMPT='%F{202}<%n@%m>%F{208} %T %B%30<..<%~%b %(!.#.>) %F{white}'
-TERM=xterm-256color
+if [[ $IN_NIX_SHELL != "" ]]
+then
+  PROMPT='%F{135}<%n@%m>%F{140} %T %B%30<..<%~%b %(!.#.>) %F{white}'
+fi
 
+TERM=xterm-256color
+ZSH_CUSTOM=~/.config/oh-my-zsh
 plugins=(
   ssh-agent
 	fzf
+  nix-shell
 )
 
 source ~/.nix-profile/share/oh-my-zsh/oh-my-zsh.sh
@@ -17,8 +23,10 @@ alias edit-os="sudo nvim /etc/nixos/configuration.nix"
 alias edit-pkgs="nvim ~/.config/nixpkgs/config.nix"
 alias edit-nvim="nvim ~/.config/nvim/init.vim && uenv myNvim"
 alias csi="nix-shell ~/.config/nixpkgs/egg-shell.nix --command csi"
+alias cdc="cd ~/code"
 # alias ls='lsd'
 
+export VERTEX_HOME=/home/konst/code/vertex
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
@@ -38,7 +46,10 @@ if test -n "$KITTY_INSTALLATION_DIR"; then
 fi
 
 export FZF_DEFAULT_COMMAND="find ."
-export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}
-export NIX_CONF_DIR=~/.config/nixpkgs
-export PATH=$PATH:~/dotfiles/sh:~/.nix-profile/bin:~/.cabal/bin
-export BOILER_COMPS=~/dotfiles/sh/boiler_comps
+if [[ $IN_NIX_SHELL != "pure" ]]
+then
+  # export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}
+  export NIX_CONF_DIR=~/.config/nixpkgs
+  export PATH=$PATH:~/dotfiles/sh:~/.nix-profile/bin:~/.config/npm-globals/node_modules/.bin:~/.cargo/bin
+  export BOILER_COMPS=~/dotfiles/sh/boiler_comps
+fi

@@ -22,5 +22,9 @@
   "hs-cc": {
     "type": "stub",
     "path": "cc/hsCC.hs"
+  },
+  "mkShell": {
+    "type": "stub",
+    "path": "nix/shell.nix"
   }
 }

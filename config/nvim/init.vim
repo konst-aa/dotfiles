@@ -62,6 +62,8 @@ call plug#begin()
   Plug 'tpope/vim-repeat', { 'branch':'master' }
   
   Plug 'alx741/vim-hindent'
+
+  Plug 'rust-lang/rust.com'
 call plug#end()
 
 "keybinds
@@ -119,6 +121,7 @@ endif
 let g:material_theme_style = 'ocean'
 colorscheme material
 
+"plugins and configs
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
@@ -141,8 +144,9 @@ let g:netrw_altv = 1
 let g:netrw_winsize = 25
 let g:netrw_bufsettings = 'noshowmode number relativenumberhi LineNr guifg=#ffffff'
 
-
 set expandtab
+syntax enable
+filetype plugin indent on
 
 " aesthetics
 set noshowmode

@@ -3,8 +3,8 @@ colors:
   #haybale: "FFE082"
   magic_purple: "9C27B0"
   lemon: "FFEB3B"
-  light_blue: "4FC3F7"
-  docker_blue: "18FFFF"
+  gmo_salad: "76FF03"
+  docker_blue: "42C0ff"
   pink: "EC407A"
   dimgray: "616161"
   blue: "039BE5"
@@ -22,7 +22,7 @@ core:
   reset_to_normal: {}
 
   directory:
-    foreground: light_blue
+    foreground: gmo_salad
 
   symlink:
     foreground: magic_purple

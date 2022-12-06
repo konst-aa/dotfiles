@@ -18,24 +18,37 @@ in {
     konst = pkgs.buildEnv {
       name = "konst";
       paths = [
+        SDL2
+        awscli2
         black
         cabal-install
+        cargo
         chicken
+        clang
         clang-tools
         egg2nix
         elixir
         fzf
         ghc
         haskell-language-server
+        haskellPackages.hindent
         lsd
         neofetch
         neovim
+        node2nix
         nodejs
         oh-my-zsh
+        pkg-config
         python310
+        python310Packages.pip
         rlwrap
+        rust-analyzer
+        rustc
+        rustup
+        solc
         tmux
         tree
+        yarn
         zsh
       ];
    };
