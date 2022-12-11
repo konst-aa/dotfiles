@@ -7,10 +7,16 @@ command1=firefox
 count=1
 
 [Session: saved at previous logout]
-clientId1=101ba19c14c10e000167008593700000016150004
-count=1
-discardCommand1[$e]=rm,$HOME/.config/session/systemsettings_101ba19c14c10e000167008593700000016150004_1670086721_871846
+clientId1=101ba19c14c10e000167028020700000017570007
+clientId2=101ba19c14c10e000167028497600000017570013
+count=2
+discardCommand1[$e]=rm,$HOME/.config/session/systemsettings_101ba19c14c10e000167028020700000017570007_1670456801_780330
+discardCommand2[$e]=rm,$HOME/.config/session/partitionmanager_101ba19c14c10e000167028497600000017570013_1670456801_780378
 program1=/run/current-system/sw/bin/systemsettings
-restartCommand1=/run/current-system/sw/bin/systemsettings,-session,101ba19c14c10e000167008593700000016150004_1670086721_871846,-name,systemsettings
+program2=/run/current-system/sw/bin/partitionmanager
+restartCommand1=/run/current-system/sw/bin/systemsettings,-session,101ba19c14c10e000167028020700000017570007_1670456801_780330,-name,systemsettings
+restartCommand2=/run/current-system/sw/bin/partitionmanager,-session,101ba19c14c10e000167028497600000017570013_1670456801_780378,-name,partitionmanager
 restartStyleHint1=0
+restartStyleHint2=0
 userId1=konst
+userId2=konst

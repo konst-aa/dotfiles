@@ -24,7 +24,7 @@ alias edit-pkgs="nvim ~/.config/nixpkgs/config.nix"
 alias edit-nvim="nvim ~/.config/nvim/init.vim && uenv myNvim"
 alias csi="nix-shell ~/.config/nixpkgs/egg-shell.nix --command csi"
 alias cdc="cd ~/code"
-# alias ls='lsd'
+alias ls='lsd'
 
 export VERTEX_HOME=/home/konst/code/vertex
 # disable sort when completing `git checkout`

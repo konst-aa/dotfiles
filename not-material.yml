@@ -11,6 +11,7 @@ colors:
   white: "ffffff"
   black: "000000"
   red: "D32F2F"
+  orange: "FF3D00"
 
 core:
   normal_text:
@@ -89,6 +90,8 @@ programming:
 
     continuous-integration:
       foreground: docker_blue
+    build:
+      foreground: orange
 
 media:
   foreground: white
