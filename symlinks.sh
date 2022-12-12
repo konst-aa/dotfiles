@@ -7,6 +7,11 @@ pairs=(
 	"csirc.scm .csirc"
 )
 
+reroutes=(
+	"config/Slack .Slack"
+	"config/google-chrome .google-chrome"
+	"config/discord .discord"
+)
 for i in "${pairs[@]}"
 do
 	set $i
@@ -16,3 +21,12 @@ do
 done
 
 echo "symlinks made"
+for i in "${reroutes[@]}"
+do
+	set $i
+	mkdir ~/$2
+	ln -s ~/$2 $(pwd)/$1
+	echo "symlinked $1 to $2 in the home dir"
+done
+
+echo "cleaned up config"
