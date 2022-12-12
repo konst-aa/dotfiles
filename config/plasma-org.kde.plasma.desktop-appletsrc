@@ -20,7 +20,7 @@ wallpaperplugin=org.kde.image
 PreloadWeight=42
 
 [Containments][1][General]
-positions={"1920x1080":["1"\\,"17"\\,"desktop:/upscaled-shimmer-myr.jpg"\\,"0"\\,"4"]}
+positions={"1920x1080":[]}
 sortMode=-1
 
 [Containments][1][Wallpaper][org.kde.image][General]
@@ -231,4 +231,4 @@ knownItems=org.kde.plasma.notifications,org.kde.plasma.devicenotifier,org.kde.pl
 
 [ScreenMapping]
 itemsOnDisabledScreens=
-screenMapping=desktop:/2745a2e2e6f9810e83e95cd8e669e5d3_clipdrop-enhance.jpg,0,0f1ed0c6-23b9-47b5-ab7a-bdde947989e6,desktop:/upscaled-shimmer-myr.jpg,0,0f1ed0c6-23b9-47b5-ab7a-bdde947989e6
+screenMapping=desktop:/2745a2e2e6f9810e83e95cd8e669e5d3_clipdrop-enhance.jpg,0,0f1ed0c6-23b9-47b5-ab7a-bdde947989e6
