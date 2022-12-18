@@ -20,11 +20,11 @@ wallpaperplugin=org.kde.image
 PreloadWeight=42
 
 [Containments][1][General]
-positions={"1920x1080":[]}
+positions={"1920x1080":["1"\\,"17"\\,"desktop:/dotfiles"\\,"0"\\,"0"\\,"desktop:/Downloads"\\,"0"\\,"1"\\,"desktop:/ramidus_qr.png"\\,"0"\\,"2"\\,"desktop:/t.txt"\\,"0"\\,"3"\\,"desktop:/t"\\,"0"\\,"4"\\,"desktop:/code"\\,"0"\\,"6"]}
 sortMode=-1
 
 [Containments][1][Wallpaper][org.kde.image][General]
-Image=/home/konst/Desktop/upscaled-shimmer-myr.jpg
+Image=/home/konst/dotfiles/desktop-images/upscaled-shimmer-myr.jpg
 
 [Containments][2]
 activityId=
@@ -100,7 +100,7 @@ immutability=1
 plugin=org.kde.plasma.systemtray
 
 [Containments][2][Applets][7][Configuration]
-PreloadWeight=97
+PreloadWeight=100
 SystrayContainmentId=8
 
 [Containments][2][Configuration]
@@ -120,6 +120,9 @@ location=0
 plugin=org.kde.plasma.folder
 wallpaperplugin=org.kde.image
 
+[Containments][22][Wallpaper][org.kde.image][General]
+Image=/home/konst/dotfiles/desktop-images/upscaled-shimmer-myr.jpg
+
 [Containments][8]
 activityId=
 formfactor=2
@@ -136,7 +139,7 @@ immutability=1
 plugin=org.kde.plasma.devicenotifier
 
 [Containments][8][Applets][10][Configuration]
-PreloadWeight=42
+PreloadWeight=82
 
 [Containments][8][Applets][11]
 immutability=1
@@ -178,7 +181,7 @@ immutability=1
 plugin=org.kde.plasma.volume
 
 [Containments][8][Applets][16][Configuration]
-PreloadWeight=62
+PreloadWeight=72
 
 [Containments][8][Applets][16][Configuration][ConfigDialog]
 DialogHeight=540
@@ -206,7 +209,7 @@ immutability=1
 plugin=org.kde.plasma.networkmanagement
 
 [Containments][8][Applets][21][Configuration]
-PreloadWeight=49
+PreloadWeight=54
 
 [Containments][8][Applets][22]
 immutability=1
@@ -231,4 +234,4 @@ knownItems=org.kde.plasma.notifications,org.kde.plasma.devicenotifier,org.kde.pl
 
 [ScreenMapping]
 itemsOnDisabledScreens=
-screenMapping=desktop:/2745a2e2e6f9810e83e95cd8e669e5d3_clipdrop-enhance.jpg,0,0f1ed0c6-23b9-47b5-ab7a-bdde947989e6
+screenMapping=desktop:/Downloads,0,0f1ed0c6-23b9-47b5-ab7a-bdde947989e6,desktop:/t,0,0f1ed0c6-23b9-47b5-ab7a-bdde947989e6,desktop:/code,0,0f1ed0c6-23b9-47b5-ab7a-bdde947989e6,desktop:/dotfiles,0,0f1ed0c6-23b9-47b5-ab7a-bdde947989e6,desktop:/ramidus_qr.png,0,0f1ed0c6-23b9-47b5-ab7a-bdde947989e6,desktop:/t.txt,0,0f1ed0c6-23b9-47b5-ab7a-bdde947989e6,desktop:/2745a2e2e6f9810e83e95cd8e669e5d3_clipdrop-enhance.jpg,0,0f1ed0c6-23b9-47b5-ab7a-bdde947989e6

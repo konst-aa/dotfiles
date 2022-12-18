@@ -25,6 +25,7 @@ alias edit-nvim="nvim ~/.config/nvim/init.vim && uenv myNvim"
 alias csi="nix-shell ~/.config/nixpkgs/egg-shell.nix --command csi"
 alias cdc="cd ~/code"
 alias ls='lsd'
+# alias pm2="pm2 --interpreter=none -x"
 
 export VERTEX_HOME=/home/konst/code/vertex
 # disable sort when completing `git checkout`
@@ -44,8 +45,11 @@ if test -n "$KITTY_INSTALLATION_DIR"; then
     kitty-integration
     unfunction kitty-integration
 fi
-
-export FZF_DEFAULT_COMMAND="find ."
+if [ -n "${commands[fzf-share]}" ]; then
+  source "$(fzf-share)/key-bindings.zsh"
+  source "$(fzf-share)/completion.zsh"
+fi
+# export FZF_DEFAULT_COMMAND="find ."
 if [[ $IN_NIX_SHELL != "pure" ]]
 then
   # export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}
