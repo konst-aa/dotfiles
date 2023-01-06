@@ -1,4 +1,4 @@
-in dotfiles folder, call symlinks.sh  
+in dotfiles folder, call `bash symlinks.sh`
 profit
 
 Notes:  
