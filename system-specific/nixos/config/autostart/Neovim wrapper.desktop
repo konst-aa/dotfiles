@@ -1,7 +1,19 @@
 [Desktop Entry]
-Exec=nvim --listen ~/.cache/nvim/a.pipe %F
+Comment[en_US]=
+Comment=
+Exec=nvim --listen '~/.cache/nvim/a.pipe' %F
+GenericName[en_US]=
+GenericName=
 Icon=nvim
+MimeType=
+Name[en_US]=Neovim wrapper
 Name=Neovim wrapper
 Path=
-Terminal=True
+StartupNotify=true
+Terminal=true
+TerminalOptions=
 Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=

@@ -20,7 +20,8 @@ source ~/.current-os/zsh-extra
 source ~/.ls_colors.zsh
 
 
-alias vi="nvim --server ~/.cache/nvim/server/server-a.pipe --remote-silent" #lol
+#alias vi="nvim --server ~/.cache/nvim/server/server-a.pipe --remote-silent" #lol
+alias vi="nvim" #lol
 alias ls='lsd'
 alias gitssh='ssh-add ~/.ssh/github'
 alias configs="cd ~/.current-os/config"
