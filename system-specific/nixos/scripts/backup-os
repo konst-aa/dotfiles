@@ -1,0 +1,11 @@
+#!/bin/sh
+
+dirname=$(date +'%Y-%m-%d-%T')
+
+target=~/.current-os/nixos-configs/$(hostname)/$dirname
+
+mkdir $target
+echo $target
+
+cp /etc/nixos/* $target
+

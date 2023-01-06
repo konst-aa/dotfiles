@@ -14,20 +14,36 @@ plugins=(
   nix-shell
 )
 
-source ~/.nix-profile/share/oh-my-zsh/oh-my-zsh.sh
+# SUPER DUPER IMPORTANT (system-specific stuff)
+source ~/.current-os/zsh-extra
+# ^^ (the above was important)
 source ~/.ls_colors.zsh
 
-alias vi="nvim" #lol
-alias upgrade-os="sudo nixos-rebuild switch"
-alias edit-os="sudo nvim /etc/nixos/configuration.nix"
-alias edit-pkgs="nvim ~/.config/nixpkgs/config.nix"
-alias edit-nvim="nvim ~/.config/nvim/init.vim && uenv myNvim"
-alias csi="nix-shell ~/.config/nixpkgs/egg-shell.nix --command csi"
-alias cdc="cd ~/code"
+
+alias vi="nvim --server ~/.cache/nvim/server/server-a.pipe --remote-silent" #lol
 alias ls='lsd'
+alias gitssh='ssh-add ~/.ssh/github'
+alias configs="cd ~/.current-os/config"
+
 # alias pm2="pm2 --interpreter=none -x"
 
 export VERTEX_HOME=/home/konst/code/vertex
+export MIX_HOME=~/.mix-home
+
+if [[ $IN_NIX_SHELL != "pure" ]]
+then
+  # export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}
+  export NIX_CONF_DIR=~/.config/nixpkgs
+  export PATH=$PATH:~/.current-os/scripts:~/dotfiles/g-scripts:~/.nix-profile/bin:~/.config/npm-globals/node_modules/.bin:~/.cargo/bin
+fi
+
+# nvim servers
+mkdir -p ~/.cache/nvim
+# in g-scripts, starts a vi server if it doesn't exist under ~/.cache/nvim/server-a.pipe
+# visv a
+
+# export FZF_DEFAULT_COMMAND="find ."
+
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
@@ -39,21 +55,17 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
 
+# app-specific
+
 if test -n "$KITTY_INSTALLATION_DIR"; then
     export KITTY_SHELL_INTEGRATION="enabled"
     autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
     kitty-integration
     unfunction kitty-integration
 fi
+
 if [ -n "${commands[fzf-share]}" ]; then
   source "$(fzf-share)/key-bindings.zsh"
   source "$(fzf-share)/completion.zsh"
 fi
-# export FZF_DEFAULT_COMMAND="find ."
-if [[ $IN_NIX_SHELL != "pure" ]]
-then
-  # export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}
-  export NIX_CONF_DIR=~/.config/nixpkgs
-  export PATH=$PATH:~/dotfiles/sh:~/.nix-profile/bin:~/.config/npm-globals/node_modules/.bin:~/.cargo/bin
-  export BOILER_COMPS=~/dotfiles/sh/boiler_comps
-fi
+

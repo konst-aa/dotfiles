@@ -1,0 +1,7 @@
+[Desktop Entry]
+Exec=nvim --listen ~/.cache/nvim/a.pipe %F
+Icon=nvim
+Name=Neovim wrapper
+Path=
+Terminal=True
+Type=Application
