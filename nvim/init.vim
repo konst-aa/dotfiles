@@ -64,6 +64,8 @@ call plug#begin()
   Plug 'alx741/vim-hindent'
 
   Plug 'rust-lang/rust.com'
+
+  Plug 'qiuxiang/coc-solidity'
 call plug#end()
 
 "keybinds

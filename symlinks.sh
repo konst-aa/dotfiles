@@ -7,7 +7,7 @@ if [ "$1" == "--system" ]; then
 	# add the config
 	unlink ~/.config
 	ln -s ~/.current-os/config ~/.config
-	sh $SYSTEM_PATH/setup.sh
+	bash $SYSTEM_PATH/setup.sh
 fi
 
 pairs=(
