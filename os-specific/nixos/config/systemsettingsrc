@@ -1,0 +1,34 @@
+[KFileDialog Settings]
+detailViewIconSize=16
+iconViewIconSize=64
+
+[KPropertiesDialog]
+eDP-1-1 HDMI-0 Height 1920x1080 eDP-1-1=491
+eDP-1-1 HDMI-0 Width 1920x1080 eDP-1-1=410
+
+[MainWindow]
+MenuBar=Disabled
+RestorePositionForNextInstance=false
+State=AAAA/wAAAAD9AAAAAAAAA/wAAAK8AAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+eDP-1=eDP-1
+eDP-1 XPosition 1920x1080 eDP-1=450
+eDP-1 YPosition 1920x1080 eDP-1=182
+eDP-1-1=eDP-1-1
+eDP-1-1 HDMI-0=eDP-1-1
+eDP-1-1 HDMI-0 XPosition 1920x1080 eDP-1-1=0
+eDP-1-1 HDMI-0 YPosition 1920x1080 eDP-1-1=0
+eDP-1-1 Height 1920x1080 eDP-1-1=711
+eDP-1-1 Width 1920x1080 eDP-1-1=1020
+eDP-1-1 XPosition 1920x1080 eDP-1-1=450
+eDP-1-1 YPosition 1920x1080 eDP-1-1=182
+eDP1=eDP1
+eDP1 XPosition 1920x1080 eDP1=450
+eDP1 YPosition 1920x1080 eDP1=182
+
+[Open-with settings]
+CompletionMode=1
+History=nvim --listen ~/.cache/nvim/a.pipe,kitty
+
+[systemsettings_sidebar_mode]
+HighlightNonDefaultSettings=false

@@ -1,5 +1,5 @@
 if [ "$1" == "--system" ]; then
-	SYSTEM_PATH=$(pwd)/system-specific/$2
+	SYSTEM_PATH=$(pwd)/os-specific/$2
 	echo "symlinking to current-os: $SYSTEM_PATH"
 	# for easy access
 	unlink ~/.current-os

@@ -35,7 +35,7 @@ if [[ $IN_NIX_SHELL != "pure" ]]
 then
   # export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}
   export NIX_CONF_DIR=~/.config/nixpkgs
-  export PATH=$PATH:~/.current-os/scripts:~/dotfiles/g-scripts:~/.nix-profile/bin:~/.config/npm-globals/node_modules/.bin:~/.cargo/bin
+  export PATH=~/.current-os/scripts:~/dotfiles/g-scripts:~/.nix-profile/bin:~/.config/npm-globals/node_modules/.bin:~/.cargo/bin:$PATH
 fi
 
 # nvim servers

@@ -1,0 +1,13 @@
+source ~/.nix-profile/share/oh-my-zsh/oh-my-zsh.sh
+
+export BOILER_COMPS=~/.current-os/scripts/boiler_comps
+
+alias csi="nix-shell ~/.config/nixpkgs/egg-shell.nix --command csi"
+alias edit-os="sudo nvim --clean /etc/nixos/configuration.nix"
+alias upgrade-os="sudo nixos-rebuild switch"
+alias edit-pkgs="nvim ~/.config/nixpkgs/config.nix"
+alias edit-home="nvim ~/.config/nixpkgs/home.nix"
+alias upgrade-home="home-manager switch && unset __HM_SESS_VARS_SOURCED && source ~/.zshrc"
+alias edit-nvim="nvim ~/.config/nvim/init.vim"
+
+source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"

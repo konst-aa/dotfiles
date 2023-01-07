@@ -1,9 +1,0 @@
-source ~/.nix-profile/share/oh-my-zsh/oh-my-zsh.sh
-
-export BOILER_COMPS=~/.current-os/scripts/boiler_comps
-
-alias csi="nix-shell ~/.config/nixpkgs/egg-shell.nix --command csi"
-alias upgrade-os="sudo nixos-rebuild switch"
-alias edit-os="sudo nvim /etc/nixos/configuration.nix"
-alias edit-pkgs="nvim ~/.config/nixpkgs/config.nix"
-alias edit-nvim="nvim ~/.config/nvim/init.vim && uenv myNvim"

@@ -9,7 +9,7 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin( !empty($VIM_PLUGGED) ? $VIM_PLUGGED : "~/.vim/plugged" )
+call plug#begin()
   " The default plugin directory will be as follows:
   "   - Vim (Linux/macOS): '~/.vim/plugged'
   "   - Vim (Windows): '~/vimfiles/plugged'
@@ -53,6 +53,8 @@ call plug#begin( !empty($VIM_PLUGGED) ? $VIM_PLUGGED : "~/.vim/plugged" )
 
   Plug 'vim-airline/vim-airline-themes'
 
+  Plug 'vimsence/vimsence'
+
   Plug 'jiangmiao/auto-pairs', { 'branch':'master' }
 
   Plug 'tpope/vim-surround', { 'branch':'master' }
@@ -64,8 +66,6 @@ call plug#begin( !empty($VIM_PLUGGED) ? $VIM_PLUGGED : "~/.vim/plugged" )
   Plug 'rust-lang/rust.com'
 
   Plug 'qiuxiang/coc-solidity'
-
-  Plug  'istepura/vim-toolbar-icons-silk'
 call plug#end()
 
 "keybinds
@@ -121,13 +121,22 @@ if (has('termguicolors'))
 endif
 
 let g:material_theme_style = 'ocean'
-
 colorscheme material
 
 "plugins and configs
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+
+"Vimsense
+"let g:vimsence_client_id = '439476230543245312'
+let g:vimsence_small_text = 'NeoVim'
+let g:vimsence_small_image = 'neovim'
+"let g:vimsence_editing_details = 'Editing: {}'
+"let g:vimsence_editing_state = 'Working on: {}'
+"let g:vimsence_file_explorer_text = 'In NERDTree'
+"let g:vimsence_file_explorer_details = 'Looking for files'
+"let g:vimsence_custom_icons = {'filetype': 'iconname'}
 
 "netrw from https://shapeshed.com/vim-netrw/
 let g:netrw_banner = 0
@@ -161,13 +170,6 @@ set updatetime=300
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
 set signcolumn=yes
-
-if (has('gui')) "breaks for reg vim
-  highlight Cursor guibg=lightgrey guifg=black
-  set guicursor=i:ver20-Cursor 
-  set guicursor+=n-ci:Cursor
-  set guifont=Inconsolata\ 13
-endif
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: There's always complete item selected by default, you may want to enable

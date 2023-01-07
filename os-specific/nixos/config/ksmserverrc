@@ -1,0 +1,22 @@
+[$Version]
+update_info=ksmserver_update_loginMode_value.upd:ksmserver_update_loginMode_value_default_enum
+
+[LegacySession: saved at previous logout]
+clientMachine1=localhost
+command1=firefox
+count=1
+
+[Session: saved at previous logout]
+clientId1=101ba19c14c10e000167261935200000016570005
+clientId2=101ba19c14c10e000167297538500000016350004
+count=2
+discardCommand1[$e]=rm,$HOME/.config/session/dolphin_101ba19c14c10e000167261935200000016570005_1673079258_390792
+discardCommand2[$e]=rm,$HOME/.config/session/systemsettings_101ba19c14c10e000167297538500000016350004_1673079258_390806
+program1=/run/current-system/sw/bin/dolphin
+program2=/run/current-system/sw/bin/systemsettings
+restartCommand1=/run/current-system/sw/bin/dolphin,-session,101ba19c14c10e000167261935200000016570005_1673079258_390792,-name,dolphin
+restartCommand2=/run/current-system/sw/bin/systemsettings,-session,101ba19c14c10e000167297538500000016350004_1673079258_390806,-name,systemsettings
+restartStyleHint1=0
+restartStyleHint2=0
+userId1=konst
+userId2=konst

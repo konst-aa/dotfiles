@@ -1,6 +1,3 @@
-[$Version]
-update_info=ksmserver_update_loginMode_value.upd:ksmserver_update_loginMode_value_default_enum
-
 [LegacySession: saved at previous logout]
 clientMachine1=localhost
 command1=firefox
@@ -8,9 +5,20 @@ count=1
 
 [Session: saved at previous logout]
 clientId1=101ba19c14c10e000167261935200000016570005
-count=1
-discardCommand1[$e]=rm,$HOME/.config/session/dolphin_101ba19c14c10e000167261935200000016570005_1672948223_213870
+clientId2=101ba19c14c10e000167297538500000016350004
+clientId3=101ba19c14c10e000167297886100000016510004
+count=3
+discardCommand1[$e]=rm,$HOME/.config/session/dolphin_101ba19c14c10e000167261935200000016570005_1672985223_652905
+discardCommand2[$e]=rm,$HOME/.config/session/systemsettings_101ba19c14c10e000167297538500000016350004_1672985223_652836
 program1=/run/current-system/sw/bin/dolphin
-restartCommand1=/run/current-system/sw/bin/dolphin,-session,101ba19c14c10e000167261935200000016570005_1672948223_213870,-name,dolphin
+program2=/run/current-system/sw/bin/systemsettings
+program3=/run/current-system/sw/bin/plasma-systemmonitor
+restartCommand1=/run/current-system/sw/bin/dolphin,-session,101ba19c14c10e000167261935200000016570005_1672985223_652905,-name,dolphin
+restartCommand2=/run/current-system/sw/bin/systemsettings,-session,101ba19c14c10e000167297538500000016350004_1672985223_652836,-name,systemsettings
+restartCommand3=/run/current-system/sw/bin/plasma-systemmonitor,-session,101ba19c14c10e000167297886100000016510004_1672985223_652831,-name,plasma-systemmonitor
 restartStyleHint1=0
+restartStyleHint2=0
+restartStyleHint3=0
 userId1=konst
+userId2=konst
+userId3=konst
