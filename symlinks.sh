@@ -18,7 +18,9 @@ pairs=(
 	"xmonad .config/xmonad"
 	"xmobar .config/xmobar"
 	"zshrc .zshrc"
-    "lispwords .lispwords"
+	"bashrc .bashrc"
+	"bash_profile .bash_profile"
+	"lispwords .lispwords"
 	"csirc.scm .csirc"
     "settings.json .config/Code/User/settings.json"
 )
