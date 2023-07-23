@@ -1,0 +1,15 @@
+{
+  "flakes": [
+    {
+      "from": {
+        "id": "konst-pkgs",
+        "type": "indirect"
+      },
+      "to": {
+        "path": "/home/konst/nixpkgs",
+        "type": "path"
+      }
+    }
+  ],
+  "version": 2
+}

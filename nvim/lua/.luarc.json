@@ -1,0 +1,28 @@
+{
+    "workspace.library": [
+        "/nix/store/cgknhfarvx6m56v1ggg69g272njz4saz-vim-pack-dir",
+        "/home/konst/.config/nvim",
+        "/home/konst/.local/share/nvim/site",
+        "/home/konst/.local/share/nvim/site/pack/paqs/start/auto-pairs",
+        "/home/konst/.local/share/nvim/site/pack/paqs/start/goyo.vim",
+        "/home/konst/.local/share/nvim/site/pack/paqs/start/limelight.vim",
+        "/home/konst/.local/share/nvim/site/pack/paqs/start/lualine.nvim",
+        "/home/konst/.local/share/nvim/site/pack/paqs/start/markdown-preview.nvim",
+        "/home/konst/.local/share/nvim/site/pack/paqs/start/material.vim",
+        "/home/konst/.local/share/nvim/site/pack/paqs/start/nerdtree",
+        "/home/konst/.local/share/nvim/site/pack/paqs/start/nvim-lspconfig",
+        "/home/konst/.local/share/nvim/site/pack/paqs/start/paq-nvim",
+        "/home/konst/.local/share/nvim/site/pack/paqs/start/vim-commentary",
+        "/home/konst/.local/share/nvim/site/pack/paqs/start/vim-devicons",
+        "/home/konst/.local/share/nvim/site/pack/paqs/start/vim-fugitive",
+        "/home/konst/.local/share/nvim/site/pack/paqs/start/vim-markdown",
+        "/home/konst/.local/share/nvim/site/pack/paqs/start/vim-pencil",
+        "/home/konst/.local/share/nvim/site/pack/paqs/start/vim-repeat",
+        "/home/konst/.local/share/nvim/site/pack/paqs/start/vim-surround",
+        "/home/konst/.local/share/nvim/site/pack/paqs/start/vim-toolbar-icons-silk",
+        "/nix/store/hhyajwm83gagrc6vpbanrarkg9h9cqq4-neovim-unwrapped-0.8.2/share/nvim/runtime",
+        "/nix/store/hhyajwm83gagrc6vpbanrarkg9h9cqq4-neovim-unwrapped-0.8.2/lib/nvim",
+        "/home/konst/.local/share/nvim/site/pack/paqs/start/vim-markdown/after",
+        "${3rd}/luassert/library"
+    ]
+}

@@ -1,0 +1,111 @@
+colors:
+  # https://materialui.co/colors/
+  #haybale: "FFE082"
+  magic_purple: "9C27B0"
+  lemon: "FFEB3B"
+  gmo_salad: "76FF03"
+  docker_blue: "42C0ff"
+  pink: "EC407A"
+  dimgray: "616161"
+  blue: "039BE5"
+  white: "ffffff"
+  black: "000000"
+  red: "D32F2F"
+  orange: "DD2C00"
+
+core:
+  normal_text:
+    foreground: white
+
+  regular_file: 
+    foreground: white
+
+  reset_to_normal: {}
+
+  directory:
+    foreground: gmo_salad
+
+  symlink:
+    foreground: magic_purple
+
+  multi_hard_link: {}
+
+  fifo: {}
+
+  socket: {}
+
+  door: {}
+
+  block_device: {}
+
+  character_device: {}
+
+  broken_symlink:
+    foreground: black
+    background: red
+
+  missing_symlink_target:
+    foreground: black
+    background: red
+
+  setuid: {}
+
+  setgid: {}
+
+  file_with_capability: {}
+
+  sticky_other_writable: {}
+
+  other_writable: {}
+
+  sticky: {}
+
+  executable_file:
+    foreground: pink
+    font-style: bold
+
+text:
+  special: {}
+
+  todo: {}
+
+  licenses:
+    foreground: lemon
+
+  configuration: 
+    foreground: white
+
+  other: 
+    foreground: white
+
+markup:
+  foreground: white
+
+programming:
+  source:
+    foreground: white
+
+  tooling:
+    foreground: white
+
+    continuous-integration:
+      foreground: docker_blue
+    build:
+      foreground: orange
+
+media:
+  foreground: white
+
+office:
+  foreground: white
+
+archives:
+  foreground: white
+  font-style: underline
+
+executable:
+  foreground: pink
+  font-style: bold
+
+unimportant:
+  foreground: white

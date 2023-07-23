@@ -1,0 +1,80 @@
+{
+    "editor.lineNumbers": "relative",
+    "vim.sneak": true,
+    "vim.surround": true,
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                "L"
+            ],
+            "after": [
+                "$"
+            ]
+        },
+        {
+            "before": [
+                "H"
+            ],
+            "after": [
+                "^"
+            ]
+        },
+        {
+            "before": [
+                "<C-i>"
+            ],
+            "commands": [
+                ":bp"
+            ]
+        },
+        {
+            "before": [
+                "<C-o>"
+            ],
+            "commands": [
+                ":bn"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "l"
+            ],
+            "after": [
+                "o",
+                "<C-[>"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "L"
+            ],
+            "after": [
+                "O",
+                "<C-[>"
+            ]
+        },
+        {
+            "before": [
+                "<C-x>"
+            ],
+            "commands": [
+                ":bd"
+            ]
+        }
+    ],
+    "editor.inlineSuggest.enabled": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "yaml": false,
+        "python": true
+    },
+    "window.zoomLevel": 2
+}

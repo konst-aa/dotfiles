@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ $# = 2 ]; then
+	unlink $2
+	ln -s ~/dotfiles/$1 $2
+else
+	echo "Usage:"
+	echo "grab dotfiles-rel-path abs-target-path"
+fi
+

@@ -1,0 +1,91 @@
+{
+    "rust-analyzer.cargo.buildScripts.useRustcWrapper": true,
+    "rpc.showProblems": false,
+    "ltex.configurationTarget": {
+        "dictionary": "userExternalFile",
+        "disabledRules": "userExternalFile",
+        "hiddenFalsePositives": "workspaceExternalFile"
+    },
+    "cSpell.enabledLanguageIds": [
+        "markdown",
+        "plaintext",
+        "latex"
+    ],
+    "coc.preferences.formatOnSaveFiletypes": [
+        "json",
+        "python"
+    ],
+    "rust-analyzer.enable": true,
+    "rust-analyzer.server.path": "~/.nix-profile/bin/rust-analyzer",
+    "languageserver": {
+        "nix": {
+            "command": "rnix-lsp",
+            "filetypes": [
+                "nix"
+            ]
+        },
+        "solidity": {
+            "command": "solc --lsp",
+            "filetypes": [
+                "sol"
+            ]
+        },
+        "haskell": {
+            "command": "haskell-language-server-wrapper",
+            "args": [
+                "--lsp"
+            ],
+            "rootPatterns": [
+                "*.cabal",
+                "stack.yaml",
+                "cabal.project",
+                "package.yaml",
+                "hie.yaml"
+            ],
+            "filetypes": [
+                "haskell",
+                "lhaskell"
+            ],
+            // Settings are optional, here are some example values
+            "settings": {
+                "haskell": {
+                    "checkParents": "CheckOnSave",
+                    "checkProject": true,
+                    "maxCompletions": 40,
+                    "formattingProvider": "ormolu"
+                }
+            }
+        },
+        "scheme": {
+            "command": "/home/konst/code/scheme-lsp/server",
+            "filetypes": [
+                "scheme"
+            ]
+        },
+        "elixir": {
+            "command": "elixir-ls",
+            "filetypes": [
+                "elixir"
+            ]
+        },
+        "csharp-ls": {
+            "command": "~/.dotnet/tools/csharp-ls",
+            "filetypes": [
+                "cs"
+            ],
+            "rootPatterns": [
+                "*.csproj",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ]
+        }
+    },
+    "suggest.noselect": true,
+    "python.formatting.provider": "black",
+    "python.formatting.blackPath": "~/.nix-profile/bin/black",
+    "Lua.workspace.checkThirdParty": false,
+    "Lua.diagnostics.globals": [
+        "vim"
+    ]
+}
