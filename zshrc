@@ -37,7 +37,6 @@ alias vi="nvim" #lol
 alias ls='lsd'
 alias tvi="nvim +Goyo"
 alias gitssh='ssh-add ~/.ssh/github'
-alias configs="cd ~/.current-os/hostnames/$(hostname)/config"
 alias 1984="git filter-repo --invert-paths" # literally 1984
 alias edit-nvim="nvim ~/.config/nvim/init.lua"
 alias edit-xmonad="nvim ~/.config/xmonad/xmonad.hs"
