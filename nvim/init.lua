@@ -8,52 +8,51 @@ local set = vim.opt
 local builtin = require('telescope.builtin')
 
 if vim.fn.empty(data_dir .. "/pack") then
-  os.execute('git clone --depth=1 https://github.com/savq/paq-nvim.git ' .. data_dir .. '/pack/paqs/start/paq-nvim')
+    os.execute('git clone --depth=1 https://github.com/savq/paq-nvim.git ' .. data_dir .. '/pack/paqs/start/paq-nvim')
 end
 
 
 require("paq") {
-  "kaicataldo/material.vim",
-  "tpope/vim-fugitive",
-  "neovim/nvim-lspconfig",
-  "nvim-lualine/lualine.nvim",
-  "jiangmiao/auto-pairs",
-  "tpope/vim-surround",
-  "tpope/vim-repeat",
-  "istepura/vim-toolbar-icons-silk",
-  "preservim/vim-markdown",
-  "junegunn/goyo.vim",
-  "preservim/vim-pencil",
-  "junegunn/limelight.vim",
-  {
-    "iamcco/markdown-preview.nvim",
-    run = "yarn install"
-  },
-  "tpope/vim-commentary",
-  "preservim/nerdtree",
-  "ryanoasis/vim-devicons",
-  {
-    "neoclide/coc.nvim",
-    run = "yarn install"
-  },
-  "LnL7/vim-nix",
-  "nvim-telescope/telescope.nvim",
-  "nvim-lua/plenary.nvim",
-  "neovimhaskell/haskell-vim",
-  "justinmk/vim-sneak",
-  "github/copilot.vim",
-  "OmniSharp/omnisharp-vim",
+    "kaicataldo/material.vim",
+    "tpope/vim-fugitive",
+    "neovim/nvim-lspconfig",
+    "nvim-lualine/lualine.nvim",
+    "jiangmiao/auto-pairs",
+    "tpope/vim-surround",
+    "tpope/vim-repeat",
+    "istepura/vim-toolbar-icons-silk",
+    "preservim/vim-markdown",
+    "junegunn/goyo.vim",
+    "preservim/vim-pencil",
+    "junegunn/limelight.vim",
+    {
+        "iamcco/markdown-preview.nvim",
+        run = "yarn install"
+    },
+    "tpope/vim-commentary",
+    "preservim/nerdtree",
+    "ryanoasis/vim-devicons",
+    {
+        "neoclide/coc.nvim",
+        run = "yarn install"
+    },
+    "LnL7/vim-nix",
+    "nvim-telescope/telescope.nvim",
+    "nvim-lua/plenary.nvim",
+    "neovimhaskell/haskell-vim",
+    "justinmk/vim-sneak",
+    "github/copilot.vim",
+    "OmniSharp/omnisharp-vim",
 }
 
 vim.g.coc_global_extensions = {
-  "coc-json",
-  "coc-git",
-  "coc-lua",
-  "coc-pyright"
+    "coc-json",
+    "coc-git",
+    "coc-lua",
+    "coc-pyright",
 }
 
 -- keybinds
-
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
@@ -100,12 +99,15 @@ vim.cmd "nnoremap <C-x> :bp<bar>sp<bar>bn<bar>bd<CR>"
 vim.cmd "nnoremap <C-o> :bp<CR>"
 vim.cmd "nnoremap <C-p> :bn<CR>"
 
+vim.cmd "noremap j gj"
+vim.cmd "noremap k gk"
+
 if vim.fn.executable('scmindent') then
-  vim.cmd "autocmd filetype lisp,scheme setlocal equalprg=scmindent"
+    vim.cmd "autocmd filetype lisp,scheme setlocal equalprg=scmindent"
 end
 
 if vim.fn.has("termguicolors") then
-  vim.opt.termguicolors = true
+    vim.opt.termguicolors = true
 end
 
 vim.cmd "set nofoldenable"
@@ -118,69 +120,65 @@ vim.g["airline#extensions#tabline#enabled"] = 1
 vim.g["airline#extensions#tabline#formatter"] = "unique_tail_improved"
 
 local function aesthetics()
-  set.expandtab = true
-  set.linebreak = true
-  set.autoindent = true
-  set.breakindent = true
-  set.cindent = true
-  set.shiftwidth = 4
-  set.tabstop = 4
+    set.expandtab = true
+    set.linebreak = true
+    set.autoindent = true
+    set.breakindent = true
+    set.cindent = true
+    set.shiftwidth = 4
+    set.tabstop = 4
 
-  vim.cmd "let NERDTreeShowLineNumbers=1"
-  vim.cmd "autocmd FileType nerdtree setlocal relativenumber"
-  vim.cmd "syntax enable"
-  vim.cmd "filetype plugin indent on"
+    vim.cmd "let NERDTreeShowLineNumbers=1"
+    vim.cmd "autocmd FileType nerdtree setlocal relativenumber"
+    vim.cmd "syntax enable"
+    vim.cmd "filetype plugin indent on"
 
-  -- aesthetics
-  vim.cmd "set noshowmode"
-  vim.wo.number = true
-  vim.wo.relativenumber = true
-  vim.cmd "hi LineNr guifg=#ffffff"
+    -- aesthetics
+    vim.cmd "set noshowmode"
+    vim.wo.number = true
+    vim.wo.relativenumber = true
+    vim.cmd "hi LineNr guifg=#ffffff"
 
-  set.pumheight = 12
+    set.pumheight = 12
 
-  -- May need for vim (not neovim) since coc.nvim calculate byte offset by count
-  -- utf-8 byte sequence.
-  set.encoding = "utf-8"
+    -- May need for vim (not neovim) since coc.nvim calculate byte offset by count
+    -- utf-8 byte sequence.
+    set.encoding = "utf-8"
 
-  -- Some servers have issues with backup files, see #649.
-  vim.cmd "set nobackup"
-  vim.cmd "set nowritebackup"
+    -- Some servers have issues with backup files, see #649.
+    vim.cmd "set nobackup"
+    vim.cmd "set nowritebackup"
 
-  --  Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-  -- delays and poor user experience.
-  set.updatetime = 300
+    --  Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+    -- delays and poor user experience.
+    set.updatetime = 300
 
-  -- Always show the signcolumn, otherwise it would shift the text each time
-  -- diagnostics appear/become resolved.
-  set.signcolumn = "yes"
+    -- Always show the signcolumn, otherwise it would shift the text each time
+    -- diagnostics appear/become resolved.
+    set.signcolumn = "yes"
 
-  -- https://secluded.site/vim-as-a-markdown-editor/#general-vim-things
-  -- Keep cursor in approximately the middle of the screen
-  set.scrolloff = 12
+    -- https://secluded.site/vim-as-a-markdown-editor/#general-vim-things
+    -- Keep cursor in approximately the middle of the screen
+    set.scrolloff = 12
 end
 
 local function goyo_enter()
-  vim.cmd "Limelight"
-  vim.cmd "set showmode"
+    vim.cmd "Limelight"
+    vim.cmd "set showmode"
 
-  vim.cmd "noremap j gj"
-  vim.cmd "noremap k gk"
-  -- decided against remapping H to 0 for now
+    -- decided against remapping H to 0 for now
 
-  vim.cmd "SoftPencil"
-  vim.cmd "set nobreakindent"
-  vim.cmd "set noautoindent"
-  require('lualine').hide()
+    vim.cmd "SoftPencil"
+    vim.cmd "set nobreakindent"
+    vim.cmd "set noautoindent"
+    require('lualine').hide()
 end
 
 local function goyo_leave()
-  vim.cmd "PencilOff"
-  aesthetics()
-  vim.cmd "unmap j"
-  vim.cmd "unmap k"
-  vim.cmd "Limelight!"
-  require('lualine').hide({ unhide = true })
+    vim.cmd "PencilOff"
+    aesthetics()
+    vim.cmd "Limelight!"
+    require('lualine').hide({ unhide = true })
 end
 
 vim.api.nvim_create_autocmd("User", { pattern = "GoyoEnter", callback = goyo_enter })

@@ -69,7 +69,7 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 
 # app-specific
 
-export PATH="$PATH:~/.dotnet/tools:~/dotfiles/g-scripts"
+export PATH="$PATH:$HOME/.dotnet/tools:$HOME/dotfiles/g-scripts:$HOME/Android/Sdk/tools/bin"
 
 if test -n "$KITTY_INSTALLATION_DIR"; then
     export KITTY_SHELL_INTEGRATION="enabled"
