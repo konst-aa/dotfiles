@@ -228,7 +228,14 @@ input type:trackpad {
   tap enabled
   dwt enabled
   middle_emulation enabled
+  click_method clickfinger
+  tap_button_map lrm
 }
+
+bindsym $mod+c firefox --new-window https://calendar.google.com/calendar/r
+bindsym XF86AudioMute exec "if [[ $(pamixer --get-mute) = 'false' ]]; then pamixer -m; else pamixer -u; fi"
+bindsym XF86AudioRaiseVolume exec pamixer -u -i 10
+bindsym XF86AudioLowerVolume exec pamixer -d 10
 
 default_border pixel 3
 workspace 1

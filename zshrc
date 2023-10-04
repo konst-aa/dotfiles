@@ -4,7 +4,7 @@
 TERM=xterm-256color
 ZSH_CUSTOM=~/.config/oh-my-zsh
 plugins=(
-	fzf
+  fzf
   nix-shell # doesn't exist without manual installation
 )
 
@@ -27,28 +27,30 @@ then
   PROMPT='%F{135}<%n@%m>%F{140} %T$(pretty_branch %F{135} %F{140}) %B%20<..<%~%b %(!.#.>) %F{white}'
 fi
 
-# ^^ (the above was important)
 source ~/.ls_colors.zsh
 
-export EDITOR=nvim
 
 alias vi="nvim" #lol
-alias ls='lsd'
+alias ls="lsd"
 alias tvi="nvim +Goyo"
 alias gitssh='ssh-add ~/.ssh/github'
 alias 1984="git filter-repo --invert-paths" # literally 1984
 alias edit-nvim="nvim ~/.config/nvim/init.lua"
 alias edit-xmonad="nvim ~/.config/xmonad/xmonad.hs"
+alias edit-sway="nvim ~/.config/sway/config"
 alias edit-zsh="nvim ~/.zshrc"
 alias nixd="nix develop -c zsh"
 alias conf='() { cd $HOME/.config/$1 }'
 
 
 eval $(ssh-agent) > /dev/null
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+export EDITOR=nvim
+export PATH="$PATH:$HOME/.dotnet/tools:$HOME/dotfiles/g-scripts:$HOME/Android/Sdk/tools/bin"
 # export FZF_DEFAULT_COMMAND="find ."
 
 # disable sort when completing `git checkout`
@@ -64,7 +66,6 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 
 # app-specific
 
-export PATH="$PATH:$HOME/.dotnet/tools:$HOME/dotfiles/g-scripts:$HOME/Android/Sdk/tools/bin"
 
 if test -n "$KITTY_INSTALLATION_DIR"; then
     export KITTY_SHELL_INTEGRATION="enabled"
