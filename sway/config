@@ -14,16 +14,16 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term foot
+set $term kitty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
+set $menu exec j4-dmenu-desktop --dmenu='BEMENU_BACKEND=wayland bemenu -i --nb "3f3f3f" --nf "#03a5fc" --fn "pango: DejaVu Sans Mono 12"' --term='kitty'
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg $(~/.config/sway/bg-picker.sh) fill
 #
 # Example configuration:
 #
@@ -122,16 +122,16 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym $mod+9 workspace number 9
     bindsym $mod+0 workspace number 10
     # Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace number 1
-    bindsym $mod+Shift+2 move container to workspace number 2
-    bindsym $mod+Shift+3 move container to workspace number 3
-    bindsym $mod+Shift+4 move container to workspace number 4
-    bindsym $mod+Shift+5 move container to workspace number 5
-    bindsym $mod+Shift+6 move container to workspace number 6
-    bindsym $mod+Shift+7 move container to workspace number 7
-    bindsym $mod+Shift+8 move container to workspace number 8
-    bindsym $mod+Shift+9 move container to workspace number 9
-    bindsym $mod+Shift+0 move container to workspace number 10
+    bindsym $mod+Shift+1 move container to workspace number 1; workspace number 1
+    bindsym $mod+Shift+2 move container to workspace number 2; workspace number 2
+    bindsym $mod+Shift+3 move container to workspace number 3; workspace number 3
+    bindsym $mod+Shift+4 move container to workspace number 4; workspace number 4
+    bindsym $mod+Shift+5 move container to workspace number 5; workspace number 5
+    bindsym $mod+Shift+6 move container to workspace number 6; workspace number 6
+    bindsym $mod+Shift+7 move container to workspace number 7; workspace number 7
+    bindsym $mod+Shift+8 move container to workspace number 8; workspace number 8
+    bindsym $mod+Shift+9 move container to workspace number 9; workspace number 9
+    bindsym $mod+Shift+0 move container to workspace number 10; workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 #
@@ -155,7 +155,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym $mod+Shift+space floating toggle
 
     # Swap focus between the tiling area and the floating area
-    # bindsym $mod+space focus mode_toggle
+    bindsym $mod+space focus mode_toggle
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
@@ -205,12 +205,12 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
+    status_command while ~/.config/sway/sway-status.sh; do sleep 1; done
 
     colors {
         statusline #ffffff
         background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        inactive_workspace #323232 #323232 #5c5c5c
     }
 }
 
@@ -218,9 +218,13 @@ include /etc/sway/config.d/*
 
 # konst's stuff
 
-bindsym $mod+space exec j4-dmenu-desktop --dmenu='BEMENU_BACKEND=wayland bemenu -i --nb "3f3f3f" --nf "#03a5fc" --fn "pango: DejaVu Sans Mono 12"' --term='kitty'
 input type:keyboard {
   # Capslock key should work as escape key
   # See /usr/share/X11/xkb/rules/xorg.lst for options
   xkb_options ctrl:nocaps
+}
+
+input type:trackpad {
+  tap enabled
+  dwt enabled
 }
