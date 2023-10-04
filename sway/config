@@ -111,11 +111,11 @@ output * bg $(~/.config/sway/bg-picker.sh) fill
 # Workspaces:
 #
     # Switch to workspace
-    bindsym $mod+1 workspace number 1
-    bindsym $mod+2 workspace number 2
-    bindsym $mod+3 workspace number 3
-    bindsym $mod+4 workspace number 4
-    bindsym $mod+5 workspace number 5
+    bindsym $mod+1 workspace number 1; exec ~/.config/sway/open-if-missing.sh firefox firefox
+    bindsym $mod+2 workspace number 2; exec ~/.config/sway/open-if-missing.sh kitty kitty
+    bindsym $mod+3 workspace number 3; exec ~/.config/sway/open-if-missing.sh code code
+    bindsym $mod+4 workspace number 4; exec ~/.config/sway/open-if-missing.sh discord discord
+    bindsym $mod+5 workspace number 5; exec ~/.config/sway/open-if-missing.sh spotify-launcher spotify-launcher
     bindsym $mod+6 workspace number 6
     bindsym $mod+7 workspace number 7
     bindsym $mod+8 workspace number 8
@@ -227,4 +227,9 @@ input type:keyboard {
 input type:trackpad {
   tap enabled
   dwt enabled
+  middle_emulation enabled
 }
+
+default_border pixel 3
+workspace 1
+exec firefox
