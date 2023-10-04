@@ -4,7 +4,6 @@
 TERM=xterm-256color
 ZSH_CUSTOM=~/.config/oh-my-zsh
 plugins=(
-  ssh-agent
 	fzf
   nix-shell # doesn't exist without manual installation
 )
@@ -44,11 +43,8 @@ alias edit-zsh="nvim ~/.zshrc"
 alias nixd="nix develop -c zsh"
 alias conf='() { cd $HOME/.config/$1 }'
 
-# SUPER DUPER IMPORTANT (system-specific stuff)
-# source ~/.current-os/zsh-extra
 
-
-
+eval $(ssh-agent) > /dev/null
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
