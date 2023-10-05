@@ -43,6 +43,7 @@ require("paq") {
     "justinmk/vim-sneak",
     "github/copilot.vim",
     "OmniSharp/omnisharp-vim",
+    "junegunn/vim-easy-align",
 }
 
 vim.g.coc_global_extensions = {
@@ -57,6 +58,10 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
+-- EasyAlign
+vim.cmd "nmap ga <Plug>(EasyAlign)"
+vim.cmd "xmap ga <Plug>(EasyAlign)"
 
 -- Tama McGlinn's comment on Primagen's channel https://www.youtube.com/watch?v=hJzqEAf2U4I
 vim.cmd "nnoremap <leader>ex :!chmod +x %<CR>"
