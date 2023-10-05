@@ -7,11 +7,9 @@ fi
 pairs=(
 	"blugon .config/blugon"
 	"cabal_config .cabal/config"
-	"coc .config/coc"
 	"kitty .config/kitty"
 	"ls_colors.zsh .ls_colors.zsh"
 	"nix .config/nix"
-	"nixpkgs .config/nixpkgs"
 	"nvim .config/nvim"
 	"oh-my-zsh .config/oh-my-zsh"
 	"ssh_config .ssh/config"
@@ -22,7 +20,8 @@ pairs=(
 	"bash_profile .bash_profile"
 	"lispwords .lispwords"
 	"csirc.scm .csirc"
-    "settings.json .config/Code/User/settings.json"
+        "settings.json .config/Code/User/settings.json"
+	"sway .config/sway"
 )
 
 for i in "${pairs[@]}"

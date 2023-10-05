@@ -1,11 +1,8 @@
 -- and so it begins...
 
-require("coc")
-require("line")
 
 local data_dir = vim.fn.stdpath("data") .. "/site"
 local set = vim.opt
-local builtin = require('telescope.builtin')
 
 if vim.fn.empty(data_dir .. "/pack") then
     os.execute('git clone --depth=1 https://github.com/savq/paq-nvim.git ' .. data_dir .. '/pack/paqs/start/paq-nvim')
@@ -52,6 +49,9 @@ vim.g.coc_global_extensions = {
     "coc-lua",
     "coc-pyright",
 }
+local builtin = require('telescope.builtin')
+require("coc")
+require("line")
 
 -- keybinds
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
