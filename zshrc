@@ -41,6 +41,8 @@ alias edit-sway="nvim ~/.config/sway/config"
 alias edit-zsh="nvim ~/.zshrc"
 alias nixd="nix develop -c zsh"
 alias conf='() { cd $HOME/.config/$1 }'
+alias add-key="ssh-add ~/.ssh/$1"
+alias ssh-forward="ssh -R 6000:localhost:22 -N pult@ssh.ka.dreadmaw.industries"
 
 
 eval $(ssh-agent) > /dev/null
@@ -51,6 +53,7 @@ export NVM_DIR="$HOME/.nvm"
 
 export EDITOR=nvim
 export PATH="$PATH:$HOME/.dotnet/tools:$HOME/dotfiles/g-scripts:$HOME/Android/Sdk/tools/bin"
+export PATH=/usr/local/cuda-12.2/bin${PATH:+:${PATH}}
 # export FZF_DEFAULT_COMMAND="find ."
 
 # disable sort when completing `git checkout`

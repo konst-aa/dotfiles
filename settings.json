@@ -79,4 +79,5 @@
     "redhat.telemetry.enabled": false,
     "window.titleBarStyle": "custom",
     "settingsSync.keybindingsPerPlatform": false,
+    "window.zoomLevel": 1,
 }
