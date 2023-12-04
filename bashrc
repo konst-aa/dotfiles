@@ -1,5 +1,6 @@
 eval $(ssh-agent)
 alias gitssh="ssh-add ~/.ssh/github"
+alias ghc="ghc -no-keep-o-files -no-keep-hi-files"
 . "$HOME/.cargo/env"
 
 export NVM_DIR="$HOME/.nvm"

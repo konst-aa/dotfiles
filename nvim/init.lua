@@ -24,14 +24,14 @@ require("paq") {
     "junegunn/limelight.vim",
     {
         "iamcco/markdown-preview.nvim",
-        run = "yarn install"
+        build = "yarn install"
     },
     "tpope/vim-commentary",
     "preservim/nerdtree",
     "ryanoasis/vim-devicons",
     {
         "neoclide/coc.nvim",
-        run = "yarn install"
+        build = "yarn install"
     },
     "LnL7/vim-nix",
     "nvim-telescope/telescope.nvim",
@@ -107,7 +107,7 @@ vim.cmd "nnoremap <C-p> :bn<CR>"
 vim.cmd "noremap j gj"
 vim.cmd "noremap k gk"
 
-if vim.fn.executable('scmindent') then
+if vim.fn.executable('scmindent') + vim.fn.executable('racket') == 2 then
     vim.cmd "autocmd filetype lisp,scheme setlocal equalprg=scmindent"
 end
 
@@ -135,6 +135,7 @@ local function aesthetics()
 
     vim.cmd "let NERDTreeShowLineNumbers=1"
     vim.cmd "autocmd FileType nerdtree setlocal relativenumber"
+    -- vim.cmd "autocmd FileType haskell setlocal shiftwidth=2 tabstop=2"
     vim.cmd "syntax enable"
     vim.cmd "filetype plugin indent on"
 

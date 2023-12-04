@@ -83,3 +83,4 @@ if [ -n "${commands[fzf-share]}" ]; then
 fi
 
 # [ -f "~/.ghcup/env" ] && source "~/.ghcup/env" # ghcup-env
+

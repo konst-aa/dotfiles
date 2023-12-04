@@ -6,6 +6,8 @@ workspace_windows=$(swaymsg -t get_workspaces \
     | jq -r ".[] | select(.name==\"$workspace\").representation" \
     | awk -F '[][]' '{print $2}')
 
+echo $workspace_windows
+
 if [[ ! ${workspace_windows[@]} =~ $1 ]]; then
     exec $2
 fi
