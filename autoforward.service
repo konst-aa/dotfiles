@@ -1,0 +1,14 @@
+[Unit]
+Description=automatic port forwarding
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=konst
+ExecStart=/home/konst/dotfiles/autoforward.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -8,4 +8,5 @@
   let-values
   let*-values
   case
-  module) 1)
+  module
+  syntax-rules) 1)

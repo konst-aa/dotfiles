@@ -5,6 +5,26 @@
     "vim.normalModeKeyBindings": [
         {
             "before": [
+                "g",
+                "["
+            ],
+            "commands": [
+                "editor.action.marker.nextInFiles"
+            ],
+            "silent": true
+        },
+        {
+            "before": [
+                "g",
+                "]"
+            ],
+            "commands": [
+                "editor.action.marker.prevInFiles"
+            ],
+            "silent": true
+        },
+        {
+            "before": [
                 "L"
             ],
             "after": [
@@ -76,6 +96,7 @@
         "yaml": false,
         "python": true
     },
+    "C_Cpp.default.compilerPath": "/usr/bin/gcc",
     "redhat.telemetry.enabled": false,
     "window.titleBarStyle": "custom",
     "settingsSync.keybindingsPerPlatform": false,

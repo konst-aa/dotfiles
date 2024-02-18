@@ -52,6 +52,7 @@ vim.g.coc_global_extensions = {
 local builtin = require('telescope.builtin')
 require("coc")
 require("line")
+require("align")
 
 -- keybinds
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
@@ -110,6 +111,12 @@ vim.cmd "noremap k gk"
 if vim.fn.executable('scmindent') + vim.fn.executable('racket') == 2 then
     vim.cmd "autocmd filetype lisp,scheme setlocal equalprg=scmindent"
 end
+
+vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
+  desc = 'Set filetype for SSH config directories',
+  pattern = { '/etc/ssh/config.d/*', '*/.ssh/*config*' },
+  command = 'set filetype=sshconfig'
+})
 
 if vim.fn.has("termguicolors") then
     vim.opt.termguicolors = true

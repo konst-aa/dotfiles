@@ -18,6 +18,37 @@
     "rust-analyzer.enable": true,
     "rust-analyzer.server.path": "~/.nix-profile/bin/rust-analyzer",
     "languageserver": {
+        "scheme-langserver": {
+            "command": "/home/konst/code/scheme-langserver/run",
+            "filetypes": [
+                "scheme",
+                ".sls"
+            ]
+        },
+        "ccls": {
+            "command": "ccls",
+            "filetypes": [
+                "c"
+            ],
+            "rootPatterns": [
+                ".ccls",
+                "compile_commands.json",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                },
+                "clang": {
+                    "extraArgs": [
+                        "-isystem",
+                        "/usr/include/c++/11/bits"
+                    ]
+                }
+            }
+        },
         "nix": {
             "command": "rnix-lsp",
             "filetypes": [
@@ -56,12 +87,6 @@
                 }
             }
         },
-        "scheme": {
-            "command": "/home/konst/code/scheme-lsp/server",
-            "filetypes": [
-                "scheme"
-            ]
-        },
         "elixir": {
             "command": "elixir-ls",
             "filetypes": [
@@ -87,5 +112,6 @@
     "Lua.workspace.checkThirdParty": false,
     "Lua.diagnostics.globals": [
         "vim"
-    ]
+    ],
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/17.0.3/clangd_17.0.3/bin/clangd"
 }
