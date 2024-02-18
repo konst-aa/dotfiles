@@ -41,7 +41,8 @@ alias edit-sway="nvim ~/.config/sway/config"
 alias edit-zsh="nvim ~/.zshrc"
 alias nixd="nix develop -c zsh"
 alias conf='() { cd $HOME/.config/$1 }'
-alias ssh-forward="ssh -R 6000:localhost:22 -N pult@ssh.ka.dreadmaw.industries"
+alias add-key='() { ssh-add ~/.ssh/$1 }'
+alias list-keys="ls ~/.ssh"
 
 
 eval $(ssh-agent) > /dev/null
