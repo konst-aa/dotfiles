@@ -85,6 +85,7 @@
         }
     ],
     "editor.inlineSuggest.enabled": true,
+    "editor.cursorSurroundingLines": 9,
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
@@ -101,4 +102,12 @@
     "window.titleBarStyle": "custom",
     "settingsSync.keybindingsPerPlatform": false,
     "window.zoomLevel": 1,
+    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ReflowComments: false, AllowShortFunctionsOnASingleLine: None }",
+    "cSpell.userWords": [
+        "Astafurov",
+        "CSCI"
+    ],
+    "[cpp]": {
+        "editor.tabSize": 4
+    }
 }

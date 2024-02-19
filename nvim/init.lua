@@ -41,6 +41,7 @@ require("paq") {
     "github/copilot.vim",
     "OmniSharp/omnisharp-vim",
     "junegunn/vim-easy-align",
+    "vimwiki/vimwiki",
 }
 
 vim.g.coc_global_extensions = {
@@ -48,11 +49,13 @@ vim.g.coc_global_extensions = {
     "coc-git",
     "coc-lua",
     "coc-pyright",
+    "coc-clangd"
 }
 local builtin = require('telescope.builtin')
 require("coc")
 require("line")
 require("align")
+require("wiki")
 
 -- keybinds
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})

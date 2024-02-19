@@ -19,9 +19,10 @@ pairs=(
 	"bashrc .bashrc"
 	"bash_profile .bash_profile"
 	"lispwords .lispwords"
-	"csirc.scm .csirc"
-        "settings.json .config/Code/User/settings.json"
+    "csirc.scm .csirc"
+    "settings.json .config/Code/User/settings.json"
 	"sway .config/sway"
+    "nixpkgs .config/nixpkgs"
 )
 
 for i in "${pairs[@]}"

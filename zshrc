@@ -1,6 +1,3 @@
-# https://stackoverflow.com/a/2534676
-# andd https://gist.github.com/reinvanoyen/05bcfe95ca9cb5041a4eafd29309ff29
-
 TERM=xterm-256color
 ZSH_CUSTOM=~/.config/oh-my-zsh
 plugins=(
@@ -21,17 +18,23 @@ function pretty_branch() {
 
 setopt prompt_subst
 
-PROMPT='%F{202}<%n@%m>%F{208} %T$(pretty_branch %F{202} %F{208}) %B%20<..<%~%b %(!.#.>) %F{white}'
+primary=202
+secondary=208
 if [[ $IN_NIX_SHELL != "" ]]
 then
-  PROMPT='%F{135}<%n@%m>%F{140} %T$(pretty_branch %F{135} %F{140}) %B%20<..<%~%b %(!.#.>) %F{white}'
+  primary=135
+  secondary=140
 fi
+
+# https://stackoverflow.com/a/2534676
+PROMPT='%F{$primary}<%n@%m>%F{$secondary} %T$(pretty_branch %F{$primary} %F{$secondary}) %B%20<..<%~%b %(!.#.>) %F{white}'
 
 source ~/.ls_colors.zsh
 
 
 alias vi="nvim" #lol
 alias ls="lsd"
+alias cat="bat"
 alias tvi="nvim +Goyo"
 alias gitssh='ssh-add ~/.ssh/github'
 alias 1984="git filter-repo --invert-paths" # literally 1984
@@ -43,6 +46,7 @@ alias nixd="nix develop -c zsh"
 alias conf='() { cd $HOME/.config/$1 }'
 alias add-key='() { ssh-add ~/.ssh/$1 }'
 alias list-keys="ls ~/.ssh"
+alias pyenv='source venv/bin/activate && [ ! -f .env ] || export $(grep -v "^#" .env | xargs)'
 
 
 eval $(ssh-agent) > /dev/null
@@ -81,6 +85,8 @@ if [ -n "${commands[fzf-share]}" ]; then
   source "$(fzf-share)/key-bindings.zsh"
   source "$(fzf-share)/completion.zsh"
 fi
+
+export PATH
 
 # [ -f "~/.ghcup/env" ] && source "~/.ghcup/env" # ghcup-env
 

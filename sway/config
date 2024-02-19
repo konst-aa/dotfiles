@@ -224,9 +224,9 @@ input type:keyboard {
   xkb_options ctrl:nocaps
 }
 
-input type:trackpad {
+input 1160:4160:VEN_0488:00_0488:1040_Touchpad {
   tap enabled
-  dwt enabled
+  dwt disabled
   middle_emulation enabled
   click_method clickfinger
   tap_button_map lrm
