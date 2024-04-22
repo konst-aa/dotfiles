@@ -9,4 +9,6 @@
   let*-values
   case
   module
-  syntax-rules) 1)
+  syntax-rules
+  anif
+  with-input-from-string) 1)

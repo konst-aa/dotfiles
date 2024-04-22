@@ -1,0 +1,11 @@
+#!/bin/env bash
+
+
+if [ -z "$1" ] || [ -z "$2" ]; then
+    echo "Usage: ezforward <remote port> <local port>"
+    exit 1
+fi
+
+eval $(ssh-agent)
+
+autossh -R $1:localhost:$2 -i ~/.ssh/forward -N pult@ssh.ka.dreadmaw.industries

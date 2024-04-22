@@ -34,7 +34,7 @@ source ~/.ls_colors.zsh
 
 alias vi="nvim" #lol
 alias ls="lsd"
-alias cat="bat"
+alias cat="batcat"
 alias tvi="nvim +Goyo"
 alias gitssh='ssh-add ~/.ssh/github'
 alias 1984="git filter-repo --invert-paths" # literally 1984
@@ -44,6 +44,8 @@ alias edit-sway="nvim ~/.config/sway/config"
 alias edit-zsh="nvim ~/.zshrc"
 alias nixd="nix develop -c zsh"
 alias conf='() { cd $HOME/.config/$1 }'
+alias cde='() { cd $HOME/code/$1 }'
+alias rezsh='source ~/.zshrc'
 alias add-key='() { ssh-add ~/.ssh/$1 }'
 alias list-keys="ls ~/.ssh"
 alias pyenv='source venv/bin/activate && [ ! -f .env ] || export $(grep -v "^#" .env | xargs)'

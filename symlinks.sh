@@ -23,6 +23,7 @@ pairs=(
     "settings.json .config/Code/User/settings.json"
 	"sway .config/sway"
     "nixpkgs .config/nixpkgs"
+    "g-scripts/ezforward bin/ezforward"
 )
 
 for i in "${pairs[@]}"

@@ -8,7 +8,6 @@ if vim.fn.empty(data_dir .. "/pack") then
     os.execute('git clone --depth=1 https://github.com/savq/paq-nvim.git ' .. data_dir .. '/pack/paqs/start/paq-nvim')
 end
 
-
 require("paq") {
     "kaicataldo/material.vim",
     "tpope/vim-fugitive",
