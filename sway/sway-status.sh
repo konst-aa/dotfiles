@@ -12,7 +12,7 @@ date=$(date "+%a %F %R")
 cpu=$(sensors | grep "Package" | cut -f 4,5 -d " ")
 
 # Alsa master volume
-volume=$(amixer get Master | grep "Right:" | cut -f 7,7 -d " ")
+volume=$(amixer get Master | sed -n 's/.*\[\(.*\)\%\].*/\1\%/gp')
 
 # Status bar
 echo "battery:" $battery "|" $cpu "| vol:" $volume "|" $date

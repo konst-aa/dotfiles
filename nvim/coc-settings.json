@@ -6,6 +6,9 @@
         "disabledRules": "userExternalFile",
         "hiddenFalsePositives": "workspaceExternalFile"
     },
+    "suggest": {
+        "noselect": "true"
+    },
     "cSpell.enabledLanguageIds": [
         "markdown",
         "plaintext",
@@ -18,17 +21,15 @@
     "rust-analyzer.enable": true,
     "rust-analyzer.server.path": "~/.nix-profile/bin/rust-analyzer",
     "languageserver": {
-        "scheme-langserver": {
-            "command": "/home/konst/code/scheme-langserver/run",
-            "filetypes": [
-                "scheme",
-                ".sls"
-            ]
-        },
         "ccls": {
             "command": "ccls",
             "filetypes": [
-                "c"
+                "c",
+                "h",
+                "cpp",
+                "hpp",
+                "objc",
+                "objcpp"
             ],
             "rootPatterns": [
                 ".ccls",
@@ -40,78 +41,85 @@
             "initializationOptions": {
                 "cache": {
                     "directory": "/tmp/ccls"
-                },
-                "clang": {
-                    "extraArgs": [
-                        "-isystem",
-                        "/usr/include/c++/11/bits"
-                    ]
                 }
             }
-        },
-        "nix": {
-            "command": "rnix-lsp",
+        }
+    },
+    "scheme": {
+        "scheme-langserver": {
+            "command": "scheme-langserver",
             "filetypes": [
-                "nix"
-            ]
-        },
-        "solidity": {
-            "command": "solc --lsp",
-            "filetypes": [
-                "sol"
-            ]
-        },
-        "haskell": {
-            "command": "haskell-language-server-wrapper",
+                "scheme",
+                ".sls",
+                ".scm"
+            ],
             "args": [
-                "--lsp"
-            ],
-            "rootPatterns": [
-                "*.cabal",
-                "stack.yaml",
-                "cabal.project",
-                "package.yaml",
-                "hie.yaml"
-            ],
-            "filetypes": [
-                "haskell",
-                "lhaskell"
-            ],
-            // Settings are optional, here are some example values
-            "settings": {
-                "haskell": {
-                    "checkParents": "CheckOnSave",
-                    "checkProject": true,
-                    "maxCompletions": 40,
-                    "formattingProvider": "ormolu"
-                }
-            }
-        },
-        "elixir": {
-            "command": "elixir-ls",
-            "filetypes": [
-                "elixir"
-            ]
-        },
-        "csharp-ls": {
-            "command": "~/.dotnet/tools/csharp-ls",
-            "filetypes": [
-                "cs"
-            ],
-            "rootPatterns": [
-                "*.csproj",
-                ".vim/",
-                ".git/",
-                ".hg/"
+                "~/.scheme-langserver.log"
             ]
         }
     },
-    "suggest.noselect": true,
-    "python.formatting.provider": "black",
-    "python.formatting.blackPath": "~/.nix-profile/bin/black",
-    "Lua.workspace.checkThirdParty": false,
-    "Lua.diagnostics.globals": [
-        "vim"
-    ],
-    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/17.0.3/clangd_17.0.3/bin/clangd"
+    "nix": {
+        "command": "rnix-lsp",
+        "filetypes": [
+            "nix"
+        ]
+    },
+    "solidity": {
+        "command": "solc --lsp",
+        "filetypes": [
+            "sol"
+        ]
+    },
+    "haskell": {
+        "command": "haskell-language-server-wrapper",
+        "args": [
+            "--lsp"
+        ],
+        "rootPatterns": [
+            "*.cabal",
+            "stack.yaml",
+            "cabal.project",
+            "package.yaml",
+            "hie.yaml"
+        ],
+        "filetypes": [
+            "haskell",
+            "lhaskell"
+        ],
+        // Settings are optional, here are some example values
+        "settings": {
+            "haskell": {
+                "checkParents": "CheckOnSave",
+                "checkProject": true,
+                "maxCompletions": 40,
+                "formattingProvider": "ormolu"
+            }
+        }
+    },
+    "elixir": {
+        "command": "elixir-ls",
+        "filetypes": [
+            "elixir"
+        ]
+    },
+    "csharp-ls": {
+        "command": "~/.dotnet/tools/csharp-ls",
+        "filetypes": [
+            "cs"
+        ],
+        "rootPatterns": [
+            "*.csproj",
+            ".vim/",
+            ".git/",
+            ".hg/"
+        ]
+    }
+},
+"suggest.noselect": true,
+"python.formatting.provider": "black",
+"python.formatting.blackPath": "~/.nix-profile/bin/black",
+"Lua.workspace.checkThirdParty": false,
+"Lua.diagnostics.globals": [
+    "vim"
+]
 }

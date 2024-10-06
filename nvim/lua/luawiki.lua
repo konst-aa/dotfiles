@@ -1,0 +1,1 @@
+/home/konst/code/luawiki/lua/luawiki.lua

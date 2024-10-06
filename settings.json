@@ -109,5 +109,6 @@
     ],
     "[cpp]": {
         "editor.tabSize": 4
-    }
+    },
+    "terminal.integrated.enableMultiLinePasteWarning": false
 }

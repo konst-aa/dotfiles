@@ -1,0 +1,15 @@
+[Unit]
+Description=blue light filtering
+After=xdg-desktop-autostart.target
+PartOf=graphical-session.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=konst
+Restart=always
+RestartSec=1
+ExecStart=/home/konst/dotfiles/with-env systemd-wayland.env /usr/bin/gammastep
+
+[Install]
+WantedBy=multi-user.target

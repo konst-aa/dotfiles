@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+export $(grep -v "^#" /home/konst/dotfiles/$1 | xargs)
+$2
