@@ -22,8 +22,10 @@ pairs=(
     "csirc.scm .csirc"
     "settings.json .config/Code/User/settings.json"
 	"sway .config/sway"
+    "waybar .config/waybar"
     "nixpkgs .config/nixpkgs"
     "g-scripts/ezforward bin/ezforward"
+    "autorandr .config/autorandr"
 )
 
 for i in "${pairs[@]}"

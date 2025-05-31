@@ -90,12 +90,12 @@
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
     "github.copilot.enable": {
-        "*": true,
+        "*": false,
         "plaintext": false,
         "markdown": true,
         "scminput": false,
         "yaml": false,
-        "python": true
+        "python": false
     },
     "C_Cpp.default.compilerPath": "/usr/bin/gcc",
     "redhat.telemetry.enabled": false,

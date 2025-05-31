@@ -34,7 +34,7 @@ source ~/.ls_colors.zsh
 
 alias vi="nvim" #lol
 alias ls="lsd"
-alias cat="batcat"
+alias cat="bat"
 alias tvi="nvim +Goyo"
 alias gitssh='ssh-add ~/.ssh/github'
 alias 1984="git filter-repo --invert-paths" # literally 1984
@@ -42,13 +42,28 @@ alias edit-nvim="nvim ~/.config/nvim/init.lua"
 alias edit-xmonad="nvim ~/.config/xmonad/xmonad.hs"
 alias edit-sway="nvim ~/.config/sway/config"
 alias edit-zsh="nvim ~/.zshrc"
+alias edit-nixos="sudo nvim /etc/nixos/"
 alias nixd="nix develop -c zsh"
 alias conf='() { cd $HOME/.config/$1 }'
 alias cde='() { cd $HOME/code/$1 }'
 alias rezsh='source ~/.zshrc'
 alias add-key='() { ssh-add ~/.ssh/$1 }'
 alias list-keys="ls ~/.ssh"
-alias pyenv='source venv/bin/activate && [ ! -f .env ] || export $(grep -v "^#" .env | xargs)'
+
+function pyenv() {
+    if [ -d .venv ]; then
+        source .venv/bin/activate
+    elif [ -d venv ]; then
+        source venv/bin/activate
+    fi
+    if [ -f .env ]; then
+        export $(grep -v "^#" .env | xargs)
+    fi
+}
+
+function nrebuild() {
+  sudo nixos-rebuild switch --flake /etc/nixos/#$1
+}
 
 
 eval $(ssh-agent) > /dev/null
@@ -90,5 +105,8 @@ fi
 
 export PATH
 
-# [ -f "~/.ghcup/env" ] && source "~/.ghcup/env" # ghcup-env
+[ -f "~/.ghcup/env" ] && source "~/.ghcup/env" # ghcup-env
+[ -f "~/.cargo/env" ] && source "~/.cargo/env"
 
+
+source "$HOME/.local/bin/env"

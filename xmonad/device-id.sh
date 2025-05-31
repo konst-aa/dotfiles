@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 line=$(xinput --list | grep "$1")
 
 id_regex='id=([0-9]+)'

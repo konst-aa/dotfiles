@@ -19,7 +19,7 @@
     "rust-analyzer.server.path": "~/.nix-profile/bin/rust-analyzer",
     "languageserver": {
         "scheme-langserver": {
-            "command": "/home/konst/code/scheme-langserver/run",
+            "command": "scheme-langserver",
             "filetypes": [
                 "scheme",
                 ".sls"
