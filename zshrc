@@ -34,19 +34,26 @@ source ~/.ls_colors.zsh
 
 alias vi="nvim" # lol
 alias ls="lsd"
-alias cat="batcat"
+alias cat="bat"
 alias tvi="nvim +Goyo"
 alias cshell="nix-shell -p chicken chickenPackages.chickenEggs.breadline"
 alias gitssh='ssh-add ~/.ssh/github'
+alias astaff-gitlab='ssh-add ~/.ssh/astaff-gitlab'
 alias nineteeneightyfour="git filter-repo --invert-paths" # literally 1984
+
 alias edit-nvim="nvim ~/.config/nvim/init.lua"
 alias edit-xmonad="nvim ~/.config/xmonad/xmonad.hs"
 alias edit-sway="nvim ~/.config/sway/config"
 alias edit-zsh="nvim ~/.zshrc"
 alias edit-aerospace="nvim ~/.config/aerospace/aerospace.toml"
-alias resource="source ~/.zshrc"
+alias edit-nixos="sudo nvim /etc/nixos/"
+alias nixd="nix develop -c zsh"
+alias resource="exec zsh"
+alias info='info --vi-keys'
+
 alias wiki="cd ~/wiki && nvim -c 'Goyo' index.md"
 alias myshell="nix-shell -I nixpkgs=/home/konst/nixpkgs/ -p "
+
 
 function nixd() {
     if [ -z $1 ]; then
@@ -58,36 +65,32 @@ function nixd() {
     fi
 }
 # alias nixd="() { nix develop $1 -c zsh }"
+
 alias conf='() { cd $HOME/.config/$1 }'
 alias cde='() { cd $HOME/code/$1 }'
 alias rezsh='source ~/.zshrc'
 alias add-key='() { ssh-add ~/.ssh/$1 }'
 alias list-keys="ls ~/.ssh"
-alias pyenv='source venv/bin/activate && [ ! -f .env ] || export $(grep -v "^#" .env | xargs)'
+
+function pyenv() {
+    if [ -d .venv ]; then
+        source .venv/bin/activate
+    elif [ -d venv ]; then
+        source venv/bin/activate
+    fi
+    if [ -f .env ]; then
+        export $(grep -v "^#" .env | xargs)
+    fi
+}
+
+function nrebuild() {
+  sudo nixos-rebuild switch --flake /etc/nixos/#$1
+}
 
 eval $(ssh-agent) > /dev/null
 
-# nvm is ridiculous
-function mnvm () { 
-  rm -f ~/.cache/env-cache
-  if [[ ! $(command -v nvm) == nvm ]]; then
-      source /usr/share/nvm/init-nvm.sh
-  fi
-  nvm $@
-}
 
-# nvm.sh is a > 4k line script to set like three env vars.
-# Captures the zeitgeist (lol) very well
-# cache it
-export NVM_DIR="$HOME/.nvm"
-if [ ! -f ~/.cache/env-cache ]; then
-    zsh -c 'source $NVM_DIR/nvm.sh && env' \
-        | grep 'nvm\|NVM\|PATH' \
-        | sed "s/^\([^=]*\)=\(.*\)$/export \1='\2'/"> ~/.cache/env-cache
-fi
-
-source ~/.cache/env-cache
-
+eval $(fnm env)
 
 export EDITOR=nvim
 export PATH="/opt/google-cloud-cli/bin/:$PATH:$HOME/.dotnet/tools:$HOME/dotfiles/g-scripts:$HOME/Android/Sdk/tools/bin:/usr/local/go/bin:$HOME/.local/bin"
@@ -122,3 +125,9 @@ fi
 [ -f ~/.ghcup/env ] && source ~/.ghcup/env # ghcup-env
 
 export PATH
+
+[ -f "~/.ghcup/env" ] && source "~/.ghcup/env" # ghcup-env
+[ -f "~/.cargo/env" ] && source "~/.cargo/env"
+
+[ -f ".local/bin/env" ] && source "$HOME/.local/bin/env"
+

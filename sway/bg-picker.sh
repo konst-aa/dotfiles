@@ -4,5 +4,8 @@ case $hostname in
     mindstone | mopalonarch)
         echo "$HOME/dotfiles/desktop-images/anvil-upscaled-2x.jpg"
         ;;
+    memoryjar)
+        echo "$HOME/dotfiles/desktop-images/anvil-upscaled-2x.jpg"
+        ;;
 esac
 

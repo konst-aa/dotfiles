@@ -2,3 +2,5 @@
 test -f ~/.profile && . ~/.profile
 test -f ~/.bashrc && . ~/.bashrc
 . "$HOME/.cargo/env"
+
+. "$HOME/.local/bin/env"
