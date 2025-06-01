@@ -4,7 +4,8 @@
 local data_dir = vim.fn.stdpath("data") .. "/site"
 local set = vim.opt
 
-if vim.fn.empty(data_dir .. "/pack") then
+local haspaq,_ = pcall(require,"paq")
+if not haspaq then
     os.execute('git clone --depth=1 https://github.com/savq/paq-nvim.git ' .. data_dir .. '/pack/paqs/start/paq-nvim')
 end
 

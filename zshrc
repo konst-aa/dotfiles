@@ -43,6 +43,7 @@ alias edit-nvim="nvim ~/.config/nvim/init.lua"
 alias edit-xmonad="nvim ~/.config/xmonad/xmonad.hs"
 alias edit-sway="nvim ~/.config/sway/config"
 alias edit-zsh="nvim ~/.zshrc"
+alias edit-aerospace="nvim ~/.config/aerospace/aerospace.toml"
 alias resource="source ~/.zshrc"
 alias wiki="cd ~/wiki && nvim -c 'Goyo' index.md"
 alias myshell="nix-shell -I nixpkgs=/home/konst/nixpkgs/ -p "
@@ -114,6 +115,9 @@ if test -n "$KITTY_INSTALLATION_DIR"; then
 fi
 
 
+if [ -f /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 [ -f ~/.ghcup/env ] && source ~/.ghcup/env # ghcup-env
 

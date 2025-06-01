@@ -24,6 +24,7 @@ pairs=(
     "sway .config/sway"
     "nixpkgs .config/nixpkgs"
     "gammastep .config/gammastep"
+    "aerospace .config/aerospace"
 )
 
 for i in "${pairs[@]}"
