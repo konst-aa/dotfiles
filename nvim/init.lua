@@ -48,7 +48,7 @@ require("paq") {
 
 local builtin = require('telescope.builtin')
 local lspconfig = require('lspconfig')
-lspconfig.scheme_langserver.setup {}
+-- lspconfig.scheme_langserver.setup {}
 
 -- require("mason").setup()
 
@@ -164,8 +164,6 @@ vim.cmd "nnoremap <C-x> :bp<bar>sp<bar>bn<bar>bd<CR>"
 vim.cmd "nnoremap <C-o> :bp<CR>"
 vim.cmd "nnoremap <C-p> :bn<CR>"
 
-vim.cmd "noremap j gj"
-vim.cmd "noremap k gk"
 
 if vim.fn.executable('scmindent') + vim.fn.executable('racket') == 2 then
     vim.cmd "autocmd filetype lisp,scheme setlocal equalprg=scmindent"
@@ -251,6 +249,8 @@ local function goyo_enter()
 
     -- decided against remapping H to 0 for now
 
+    vim.cmd "noremap j gj"
+    vim.cmd "noremap k gk"
     vim.cmd "SoftPencil"
     vim.cmd "set nobreakindent"
     vim.cmd "set noautoindent"
@@ -261,6 +261,8 @@ local function goyo_enter()
 end
 
 local function goyo_leave()
+    vim.cmd "unmap j"
+    vim.cmd "unmap k"
     vim.cmd "PencilOff"
     aesthetics()
     vim.cmd "Limelight!"

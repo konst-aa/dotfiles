@@ -1,0 +1,41 @@
+[
+    // ...
+    {
+        "key": "alt+tab",
+        "command": "workbench.action.focusNextGroup"
+    },
+    {
+        "key": "alt+shift+h",
+        "command":"workbench.action.moveActiveEditorGroupLeft"
+    },
+    {
+        "key": "alt+shift+l",
+        "command":"workbench.action.moveActiveEditorGroupRight"
+    },
+    {
+        "key": "ctrl+shift+h",
+        "command":"workbench.action.moveEditorToLeftGroup"
+    },
+    {
+        "key": "ctrl+shift+l",
+        "command":"workbench.action.moveEditorToRightGroup"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.nextEditorInGroup"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.previousEditorInGroup"
+    },
+    {
+        "key": "ctrl+x",
+        "command": "workbench.action.closeActiveEditor"
+    }
+
+    // {
+    //     "key": "ctrl+tab", // or change custom shortcuts
+    //     "command": "workbench.action.focusNextGroup"
+    // }
+]
+

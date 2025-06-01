@@ -5,6 +5,15 @@
     "vim.normalModeKeyBindings": [
         {
             "before": [
+                "<C-k>",
+                "<right>",
+            ],
+            "commands": [
+                "workbench.moveActiveEditorGroupLeft"
+            ]
+        },
+        {
+            "before": [
                 "g",
                 "["
             ],
@@ -41,20 +50,28 @@
         },
         {
             "before": [
-                "<C-i>"
+                "<C-p>"
             ],
             "commands": [
-                ":bp"
+                "workbench.action.quickOpenPreviousEditor"
             ]
         },
-        {
-            "before": [
-                "<C-o>"
-            ],
-            "commands": [
-                ":bn"
-            ]
-        },
+        // {
+        //     "before": [
+        //         "<C-h>"
+        //     ],
+        //     "commands": [
+        //         ":bp"
+        //     ]
+        // },
+        // {
+        //     "before": [
+        //         "<C-l>"
+        //     ],
+        //     "commands": [
+        //         ":bn"
+        //     ]
+        // },
         {
             "before": [
                 "<leader>",
@@ -75,14 +92,14 @@
                 "<C-[>"
             ]
         },
-        {
-            "before": [
-                "<C-x>"
-            ],
-            "commands": [
-                ":bd"
-            ]
-        }
+        // {
+        //     "before": [
+        //         "<C-x>"
+        //     ],
+        //     "commands": [
+        //         ":bd"
+        //     ]
+        // }
     ],
     "editor.inlineSuggest.enabled": true,
     "editor.cursorSurroundingLines": 9,
@@ -91,7 +108,7 @@
     },
     "github.copilot.enable": {
         "*": true,
-        "plaintext": false,
+        "plaintext": true,
         "markdown": true,
         "scminput": false,
         "yaml": false,
@@ -110,5 +127,39 @@
     "[cpp]": {
         "editor.tabSize": 4
     },
-    "terminal.integrated.enableMultiLinePasteWarning": false
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "latex-workshop.docker.enabled" : true,
+    "latex-workshop.docker.image.latex": "ghcr.io/xu-cheng/texlive-full",
+    "latex-workshop.view.pdf.viewer":"tab",
+    "latex-workshop.latex.external.build.args": ["-f"],
+    "latex-workshop.latex.clean.fileTypes": [
+        "%DOCFILE%.aux",
+        "%DOCFILE%.bbl",
+        "%DOCFILE%.blg",
+        "%DOCFILE%.idx",
+        "%DOCFILE%.ind",
+        "%DOCFILE%.lof",
+        "%DOCFILE%.lot",
+        "%DOCFILE%.out",
+        "%DOCFILE%.toc",
+        "%DOCFILE%.acn",
+        "%DOCFILE%.acr",
+        "%DOCFILE%.alg",
+        "%DOCFILE%.glg",
+        "%DOCFILE%.glo",
+        "%DOCFILE%.gls",
+        "%DOCFILE%.fls",
+        "%DOCFILE%.log",
+        "%DOCFILE%.fdb_latexmk",
+        "%DOCFILE%.snm",
+        "%DOCFILE%.synctex(busy)",
+        "%DOCFILE%.synctex.gz(busy)",
+        "%DOCFILE%.nav",
+        "%DOCFILE%.vrb"
+    ],
+    // "latex-workshop.latex.outDir": "%DIR%",
+    // "latex-workshop.latex.watch": 
+    // "latex-workshop.latex.watch."
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "github.copilot.nextEditSuggestions.enabled": false,
 }

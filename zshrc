@@ -34,16 +34,18 @@ source ~/.ls_colors.zsh
 
 alias vi="nvim" # lol
 alias ls="lsd"
-alias cat="batcat"
+alias cat="bat"
 alias tvi="nvim +Goyo"
 alias cshell="nix-shell -p chicken chickenPackages.chickenEggs.breadline"
 alias gitssh='ssh-add ~/.ssh/github'
+alias astaff-gitlab='ssh-add ~/.ssh/astaff-gitlab'
 alias nineteeneightyfour="git filter-repo --invert-paths" # literally 1984
 alias edit-nvim="nvim ~/.config/nvim/init.lua"
 alias edit-xmonad="nvim ~/.config/xmonad/xmonad.hs"
 alias edit-sway="nvim ~/.config/sway/config"
 alias edit-zsh="nvim ~/.zshrc"
-alias resource="source ~/.zshrc"
+alias resource="exec zsh"
+alias info='info --vi-keys'
 alias wiki="cd ~/wiki && nvim -c 'Goyo' index.md"
 alias myshell="nix-shell -I nixpkgs=/home/konst/nixpkgs/ -p "
 
@@ -66,27 +68,17 @@ alias pyenv='source venv/bin/activate && [ ! -f .env ] || export $(grep -v "^#" 
 
 eval $(ssh-agent) > /dev/null
 
-# nvm is ridiculous
-function mnvm () { 
-  rm -f ~/.cache/env-cache
-  if [[ ! $(command -v nvm) == nvm ]]; then
-      source /usr/share/nvm/init-nvm.sh
-  fi
-  nvm $@
-}
 
-# nvm.sh is a > 4k line script to set like three env vars.
-# Captures the zeitgeist (lol) very well
-# cache it
-export NVM_DIR="$HOME/.nvm"
-if [ ! -f ~/.cache/env-cache ]; then
-    zsh -c 'source $NVM_DIR/nvm.sh && env' \
-        | grep 'nvm\|NVM\|PATH' \
-        | sed "s/^\([^=]*\)=\(.*\)$/export \1='\2'/"> ~/.cache/env-cache
-fi
-
-source ~/.cache/env-cache
-
+export PATH="/run/user/1000/fnm_multishells/121674_1731606602227/bin":$PATH
+export FNM_VERSION_FILE_STRATEGY="local"
+export FNM_NODE_DIST_MIRROR="https://nodejs.org/dist"
+export FNM_DIR="/home/konst/.local/share/fnm"
+export FNM_RESOLVE_ENGINES="false"
+export FNM_MULTISHELL_PATH="/run/user/1000/fnm_multishells/121674_1731606602227"
+export FNM_ARCH="x64"
+export FNM_LOGLEVEL="info"
+export FNM_COREPACK_ENABLED="false"
+rehash
 
 export EDITOR=nvim
 export PATH="/opt/google-cloud-cli/bin/:$PATH:$HOME/.dotnet/tools:$HOME/dotfiles/g-scripts:$HOME/Android/Sdk/tools/bin:/usr/local/go/bin:$HOME/.local/bin"
@@ -118,3 +110,19 @@ fi
 [ -f ~/.ghcup/env ] && source ~/.ghcup/env # ghcup-env
 
 export PATH
+
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/usr/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/usr/etc/profile.d/conda.sh" ]; then
+#         . "/usr/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/usr/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# <<< conda initialize <<<
+

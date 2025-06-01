@@ -16,5 +16,10 @@ vim.g.easy_align_delimiters = {
         ["right_margin"]=1,
         ignore_groups = {},
         left_margin='  ',
+    },
+    [">"]={
+        ["pattern"] = "->",
+        right_margin=0,
+        left_margin=1
     }
 }

@@ -21,6 +21,7 @@ pairs=(
     "lispwords .lispwords"
     "csirc.scm .csirc"
     "settings.json .config/Code/User/settings.json"
+    "keybindings.json .config/Code/User/keybindings.json"
     "sway .config/sway"
     "nixpkgs .config/nixpkgs"
     "gammastep .config/gammastep"
