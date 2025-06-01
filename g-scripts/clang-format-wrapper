@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+clang-format --fallback-style="{ BasedOnStyle: Google, IndentWidth: 4, ReflowComments: false, AllowShortFunctionsOnASingleLine: None }"

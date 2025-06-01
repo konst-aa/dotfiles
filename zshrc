@@ -32,18 +32,36 @@ PROMPT='%F{$primary}<%n@%m>%F{$secondary} %T$(pretty_branch %F{$primary} %F{$sec
 source ~/.ls_colors.zsh
 
 
-alias vi="nvim" #lol
+alias vi="nvim" # lol
 alias ls="lsd"
 alias cat="bat"
 alias tvi="nvim +Goyo"
+alias cshell="nix-shell -p chicken chickenPackages.chickenEggs.breadline"
 alias gitssh='ssh-add ~/.ssh/github'
-alias 1984="git filter-repo --invert-paths" # literally 1984
+alias astaff-gitlab='ssh-add ~/.ssh/astaff-gitlab'
+alias nineteeneightyfour="git filter-repo --invert-paths" # literally 1984
 alias edit-nvim="nvim ~/.config/nvim/init.lua"
 alias edit-xmonad="nvim ~/.config/xmonad/xmonad.hs"
 alias edit-sway="nvim ~/.config/sway/config"
 alias edit-zsh="nvim ~/.zshrc"
 alias edit-nixos="sudo nvim /etc/nixos/"
 alias nixd="nix develop -c zsh"
+alias resource="exec zsh"
+alias info='info --vi-keys'
+alias wiki="cd ~/wiki && nvim -c 'Goyo' index.md"
+alias myshell="nix-shell -I nixpkgs=/home/konst/nixpkgs/ -p "
+
+function nixd() {
+    if [ -z $1 ]; then
+        nix develop -c zsh
+    elif [[ $1 =~ "#." ]]; then
+        nix develop $1 -c zsh
+    else
+        nix develop .#$1 -c zsh
+    fi
+}
+# alias nixd="() { nix develop $1 -c zsh }"
+
 alias conf='() { cd $HOME/.config/$1 }'
 alias cde='() { cd $HOME/code/$1 }'
 alias rezsh='source ~/.zshrc'
@@ -65,15 +83,23 @@ function nrebuild() {
   sudo nixos-rebuild switch --flake /etc/nixos/#$1
 }
 
-
 eval $(ssh-agent) > /dev/null
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="/run/user/1000/fnm_multishells/121674_1731606602227/bin":$PATH
+export FNM_VERSION_FILE_STRATEGY="local"
+export FNM_NODE_DIST_MIRROR="https://nodejs.org/dist"
+export FNM_DIR="/home/konst/.local/share/fnm"
+export FNM_RESOLVE_ENGINES="false"
+export FNM_MULTISHELL_PATH="/run/user/1000/fnm_multishells/121674_1731606602227"
+export FNM_ARCH="x64"
+export FNM_LOGLEVEL="info"
+export FNM_COREPACK_ENABLED="false"
+rehash
 
 export EDITOR=nvim
-export PATH="$PATH:$HOME/.dotnet/tools:$HOME/dotfiles/g-scripts:$HOME/Android/Sdk/tools/bin:/usr/local/go/bin"
+export PATH="/opt/google-cloud-cli/bin/:$PATH:$HOME/.dotnet/tools:$HOME/dotfiles/g-scripts:$HOME/Android/Sdk/tools/bin:/usr/local/go/bin:$HOME/.local/bin"
+
 export PATH=/usr/local/cuda-12.2/bin${PATH:+:${PATH}}
 # export FZF_DEFAULT_COMMAND="find ."
 
@@ -83,13 +109,11 @@ zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 # set list-colors to enable filename colorizing
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-# preview directory's content with exa when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
-# switch group using `,` and `.`
-zstyle ':fzf-tab:*' switch-group ',' '.'
 
 # app-specific
+# Set up fzf key bindings and fuzzy completion
 
+command -v fzf &> /dev/null && source <(fzf --zsh)
 
 if test -n "$KITTY_INSTALLATION_DIR"; then
     export KITTY_SHELL_INTEGRATION="enabled"
@@ -98,15 +122,13 @@ if test -n "$KITTY_INSTALLATION_DIR"; then
     unfunction kitty-integration
 fi
 
-if [ -n "${commands[fzf-share]}" ]; then
-  source "$(fzf-share)/key-bindings.zsh"
-  source "$(fzf-share)/completion.zsh"
-fi
+
+
+[ -f ~/.ghcup/env ] && source ~/.ghcup/env # ghcup-env
 
 export PATH
 
 [ -f "~/.ghcup/env" ] && source "~/.ghcup/env" # ghcup-env
 [ -f "~/.cargo/env" ] && source "~/.cargo/env"
-
 
 source "$HOME/.local/bin/env"

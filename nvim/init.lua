@@ -9,40 +9,56 @@ if vim.fn.empty(data_dir .. "/pack") then
 end
 
 require("paq") {
+    "williamboman/mason.nvim",
     "kaicataldo/material.vim",
     "tpope/vim-fugitive",
     "neovim/nvim-lspconfig",
     "nvim-lualine/lualine.nvim",
-    "jiangmiao/auto-pairs",
+    -- "jiangmiao/auto-pairs",
+    "windwp/nvim-autopairs",
     "tpope/vim-surround",
     "tpope/vim-repeat",
     "istepura/vim-toolbar-icons-silk",
+    "godlygeek/tabular",
     "preservim/vim-markdown",
     "junegunn/goyo.vim",
     "preservim/vim-pencil",
     "junegunn/limelight.vim",
-    {
-        "iamcco/markdown-preview.nvim",
-        build = "yarn install"
-    },
+     {
+         "neoclide/coc.nvim",
+         build = "npm ci",
+     },
     "tpope/vim-commentary",
     "preservim/nerdtree",
     "ryanoasis/vim-devicons",
     {
-        "neoclide/coc.nvim",
-        build = "yarn install"
+        "github/copilot.vim",
+        opt=true,
     },
     "LnL7/vim-nix",
     "nvim-telescope/telescope.nvim",
     "nvim-lua/plenary.nvim",
     "neovimhaskell/haskell-vim",
     "justinmk/vim-sneak",
-    "github/copilot.vim",
     "OmniSharp/omnisharp-vim",
     "junegunn/vim-easy-align",
     "konst-aa/luawiki",
-    "vimwiki/vimwiki"
+    -- "jls83/vimwiki", -- 43 commits behind as of May 2024
 }
+
+local builtin = require('telescope.builtin')
+local lspconfig = require('lspconfig')
+-- lspconfig.scheme_langserver.setup {}
+
+-- require("mason").setup()
+
+require("my-conqueror")
+require("line")
+require("align")
+require("nvim-autopairs").setup {}
+require("luawiki") .setup {}
+
+-- require("mylspconfig")
 
 vim.g.coc_global_extensions = {
     "coc-json",
@@ -51,6 +67,7 @@ vim.g.coc_global_extensions = {
     "coc-pyright",
     "coc-clangd"
 }
+
 local builtin = require('telescope.builtin')
 require("coc")
 require("line")
@@ -88,6 +105,47 @@ vim.cmd "map <leader>L O<C-[>"
 vim.cmd "map <leader>p <leader>lgP"
 vim.cmd "map <leader>P <leader>LP"
 vim.cmd "map <leader>ya gg\"+yG``"
+vim.cmd "map <leader>go :Copilot enable<CR>"
+vim.cmd "map <leader>gf :Copilot disable<CR>"
+vim.cmd "map <leader>day :Day<CR>"
+vim.cmd "map <leader>tm :Time<CR>"
+
+
+vim.api.nvim_create_user_command("Resource",function()
+  pcall(function()
+      vim.cmd "source $MYVIMRC"
+  end)
+end,{})
+
+
+-- will need to figure out how to do lazy loading
+vim.api.nvim_create_user_command("Loadpilot",function()
+  pcall(function()
+      packadd("copilot.vim")
+      vim.cmd "Copilot enable"
+      -- vim.cmd "source $MYVIMRC"
+  end)
+end,{})
+
+vim.api.nvim_create_user_command("Day",function()
+  pcall(function()
+      vim.cmd "normal! o##"
+      vim.cmd "r!date +\\%F"
+      vim.cmd "normal! kJ" -- I know gJ is a thing
+      vim.cmd "r!date +\"\\%a \\%d \\%b \\%Y \\%R \\%Z\""
+      vim.cmd "normal! o"
+      vim.cmd "normal! o"
+  end)
+end,{})
+
+vim.api.nvim_create_user_command("Time",function()
+  pcall(function()
+      vim.cmd "normal! o###"
+      vim.cmd "r!date +\"\\%H:\\%M:\\%S\""
+      vim.cmd "normal! kJ"
+      vim.cmd "normal! o"
+  end)
+end,{})
 
 vim.cmd "nnoremap <leader>ew :noh<CR>"
 
@@ -108,18 +166,27 @@ vim.cmd "nnoremap <C-x> :bp<bar>sp<bar>bn<bar>bd<CR>"
 vim.cmd "nnoremap <C-o> :bp<CR>"
 vim.cmd "nnoremap <C-p> :bn<CR>"
 
-vim.cmd "noremap j gj"
-vim.cmd "noremap k gk"
 
 if vim.fn.executable('scmindent') + vim.fn.executable('racket') == 2 then
     vim.cmd "autocmd filetype lisp,scheme setlocal equalprg=scmindent"
 end
 
+if vim.fn.executable('clang-format') + vim.fn.executable('clang-format-wrapper') then
+    vim.cmd("autocmd FileType c,h,cpp,hpp,objc,objc++ :setlocal formatprg=clang-format-wrapper")
+end
+
 vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
-  desc = 'Set filetype for SSH config directories',
-  pattern = { '/etc/ssh/config.d/*', '*/.ssh/*config*' },
-  command = 'set filetype=sshconfig'
+    desc = 'Set filetype for SSH config directories',
+    pattern = { '/etc/ssh/config.d/*', '*/.ssh/*config*' },
+    command = 'set filetype=sshconfig'
 })
+
+-- this thing sucks; not the plugin, but Copilot.
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--     callback = function()
+--         vim.cmd "Copilot disable"
+--    end,
+-- })
 
 if vim.fn.has("termguicolors") then
     vim.opt.termguicolors = true
@@ -184,13 +251,20 @@ local function goyo_enter()
 
     -- decided against remapping H to 0 for now
 
+    vim.cmd "noremap j gj"
+    vim.cmd "noremap k gk"
     vim.cmd "SoftPencil"
     vim.cmd "set nobreakindent"
     vim.cmd "set noautoindent"
+    vim.cmd "setlocal spell spelllang=en_us"
     require('lualine').hide()
+
+    
 end
 
 local function goyo_leave()
+    vim.cmd "unmap j"
+    vim.cmd "unmap k"
     vim.cmd "PencilOff"
     aesthetics()
     vim.cmd "Limelight!"
@@ -199,9 +273,12 @@ end
 
 vim.api.nvim_create_autocmd("User", { pattern = "GoyoEnter", callback = goyo_enter })
 vim.api.nvim_create_autocmd("User", { pattern = "GoyoLeave", callback = goyo_leave })
+
+
 -- vim.cmd([[
 -- autocmd! User GoyoEnter nested :lua goyo_enter()
 -- autocmd! User GoyoLeave nested :lua goyo_leave()
 -- ]])
 
 aesthetics()
+

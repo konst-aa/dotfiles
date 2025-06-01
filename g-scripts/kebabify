@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+for oldname in $(find . -maxdepth 1 -printf '%f\n')
+do
+  [ -d "$oldname" ] && continue
+  newname=$(echo "$oldname" | tr -dc '[:alnum:].-' | sed 's/-\+/-/g')
+  [ "$newname" == "$oldname" ] && continue
+  mv "$oldname" "$newname"
+done
+

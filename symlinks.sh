@@ -1,39 +1,41 @@
 if [[ $# != 2 && $# != 0 ]]; then
-	echo "Usage:"
-	echo "    bash symlinks.sh system hostname"
-	exit 0
+    echo "Usage:"
+    echo "    bash symlinks.sh system hostname"
+    exit 0
 fi
 
 pairs=(
-	"blugon .config/blugon"
-	"cabal_config .cabal/config"
-	"kitty .config/kitty"
-	"ls_colors.zsh .ls_colors.zsh"
-	"nix .config/nix"
-	"nvim .config/nvim"
-	"oh-my-zsh .config/oh-my-zsh"
-	"ssh_config .ssh/config"
-	"xmonad .config/xmonad"
-	"xmobar .config/xmobar"
-	"zshrc .zshrc"
-	"bashrc .bashrc"
-	"bash_profile .bash_profile"
-	"lispwords .lispwords"
-    "csirc.scm .csirc"
-    "settings.json .config/Code/User/settings.json"
-	"sway .config/sway"
-    "waybar .config/waybar"
-    "nixpkgs .config/nixpkgs"
-    "g-scripts/ezforward bin/ezforward"
     "autorandr .config/autorandr"
+    "bash_profile .bash_profile"
+    "bashrc .bashrc"
+    "blugon .config/blugon"
+    "csirc.scm .csirc"
+    "g-scripts/ezforward bin/ezforward"
+    "gammastep .config/gammastep"
+    "keybindings.json .config/Code/User/keybindings.json"
+    "kitty .config/kitty"
+    "lispwords .lispwords"
+    "ls_colors.zsh .ls_colors.zsh"
+    "nix .config/nix"
+    "nixpkgs .config/nixpkgs"
+    "nvim .config/nvim"
+    "oh-my-zsh .config/oh-my-zsh"
+    "settings.json .config/Code/User/settings.json"
+    "ssh_config .ssh/config"
+    "sway .config/sway"
+    "waybar .config/waybar"
+    "xmobar .config/xmobar"
+    "xmonad .config/xmonad"
+    "zshrc .zshrc"
+    # "cabal_config .cabal/config"
 )
 
 for i in "${pairs[@]}"
 do
-	set $i
-	echo "symlinking $1"
-	unlink ~/$2
-	ln -s $(pwd)/$1 ~/$2
+    set $i
+    echo "symlinking $1"
+    unlink ~/$2
+    ln -s $(pwd)/$1 ~/$2
 done
 
 echo "symlinks updated"

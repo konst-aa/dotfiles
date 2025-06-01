@@ -107,6 +107,25 @@ output * bg $(~/.config/sway/bg-picker.sh) fill
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
+
+    # move workspaces around
+    bindsym $mod+Control+Shift+$left move workspace to output left
+    bindsym $mod+Control+Shift+$down move workspace to output down
+    bindsym $mod+Control+Shift+$up move workspace to output up
+    bindsym $mod+Control+Shift+$right move workspace to output right
+
+    # Ditto, with arrow keys
+    bindsym $mod+Control+Shift+Left move workspace to output left
+    bindsym $mod+Control+Shift+Down move workspace to output down
+    bindsym $mod+Control+Shift+Up move workspace to output up
+    bindsym $mod+Control+Shift+Right move workspace to output right
+
+    # don't really like vim keybindings; focus left/right outputs
+    bindsym $mod+Control+Left focus output left
+    bindsym $mod+Control+Down focus output down
+    bindsym $mod+Control+Up focus output up
+    bindsym $mod+Control+Right focus output right
+
 #
 # Workspaces:
 #
@@ -115,7 +134,7 @@ output * bg $(~/.config/sway/bg-picker.sh) fill
     bindsym $mod+2 workspace number 2; exec ~/.config/sway/open-if-missing.sh kitty kitty
     bindsym $mod+3 workspace number 3; exec ~/.config/sway/open-if-missing.sh Code code
     bindsym $mod+4 workspace number 4; exec ~/.config/sway/open-if-missing.sh discord discord
-    bindsym $mod+5 workspace number 5; exec ~/.config/sway/open-if-missing.sh spotify-launcher spotify-launcher
+    bindsym $mod+5 workspace number 5; exec ~/.config/sway/open-if-missing.sh spotify spotify
     bindsym $mod+6 workspace number 6
     bindsym $mod+7 workspace number 7
     bindsym $mod+8 workspace number 8
@@ -232,10 +251,12 @@ input 1160:4160:VEN_0488:00_0488:1040_Touchpad {
   tap_button_map lrm
 }
 
-bindsym $mod+c exec firefox --new-window https://calendar.google.com/calendar/r
+bindsym $mod+c exec firefox --new-tab https://calendar.google.com/calendar/r
 bindsym XF86AudioMute exec "if [[ $(pamixer --get-mute) = 'false' ]]; then pamixer -m; else pamixer -u; fi"
 bindsym XF86AudioRaiseVolume exec pamixer -u -i 10
 bindsym XF86AudioLowerVolume exec pamixer -d 10
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
 bindsym $mod+s exec grim -g "$(slurp -d)" - | wl-copy
 
 default_border pixel 3
