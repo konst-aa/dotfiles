@@ -69,7 +69,7 @@ vim.g.coc_global_extensions = {
 }
 
 local builtin = require('telescope.builtin')
-require("coc")
+
 require("line")
 require("align")
 require("luawiki").setup {}

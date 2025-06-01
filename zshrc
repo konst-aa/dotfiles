@@ -51,6 +51,7 @@ alias info='info --vi-keys'
 alias wiki="cd ~/wiki && nvim -c 'Goyo' index.md"
 alias myshell="nix-shell -I nixpkgs=/home/konst/nixpkgs/ -p "
 
+
 function nixd() {
     if [ -z $1 ]; then
         nix develop -c zsh
@@ -86,16 +87,7 @@ function nrebuild() {
 eval $(ssh-agent) > /dev/null
 
 
-export PATH="/run/user/1000/fnm_multishells/121674_1731606602227/bin":$PATH
-export FNM_VERSION_FILE_STRATEGY="local"
-export FNM_NODE_DIST_MIRROR="https://nodejs.org/dist"
-export FNM_DIR="/home/konst/.local/share/fnm"
-export FNM_RESOLVE_ENGINES="false"
-export FNM_MULTISHELL_PATH="/run/user/1000/fnm_multishells/121674_1731606602227"
-export FNM_ARCH="x64"
-export FNM_LOGLEVEL="info"
-export FNM_COREPACK_ENABLED="false"
-rehash
+eval $(fnm env)
 
 export EDITOR=nvim
 export PATH="/opt/google-cloud-cli/bin/:$PATH:$HOME/.dotnet/tools:$HOME/dotfiles/g-scripts:$HOME/Android/Sdk/tools/bin:/usr/local/go/bin:$HOME/.local/bin"
@@ -131,4 +123,5 @@ export PATH
 [ -f "~/.ghcup/env" ] && source "~/.ghcup/env" # ghcup-env
 [ -f "~/.cargo/env" ] && source "~/.cargo/env"
 
-source "$HOME/.local/bin/env"
+[ -f ".local/bin/env" ] && source "$HOME/.local/bin/env"
+
