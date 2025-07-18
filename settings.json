@@ -162,4 +162,7 @@
     // "latex-workshop.latex.watch."
     "latex-workshop.latex.autoBuild.run": "onSave",
     "github.copilot.nextEditSuggestions.enabled": false,
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
 }

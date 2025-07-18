@@ -14,6 +14,7 @@ pairs=(
     "g-scripts/ezforward bin/ezforward"
     "gammastep .config/gammastep"
     "keybindings.json .config/Code/User/keybindings.json"
+    "keybindings.json Library/Application Support/Code/User/keybindings.json"
     "kitty .config/kitty"
     "lispwords .lispwords"
     "ls_colors.zsh .ls_colors.zsh"
@@ -24,15 +25,17 @@ pairs=(
     "settings.json .config/Code/User/settings.json"
     "ssh_config .ssh/config"
     "sway .config/sway"
+    "settings.json Library/Application Support/Code/User/settings.json"
     # "cabal_config .cabal/config"
 )
 
-for i in "${pairs[@]}"
-do
-    set $i
-    echo "symlinking $1"
-    unlink ~/$2
-    ln -s $(pwd)/$1 ~/$2
+
+for entry in "${pairs[@]}"; do
+    read -r src dst <<< "$entry"
+    echo "symlinking $src -> $dst"
+    unlink ~/"$dst" 2>/dev/null
+    ln -s "$(pwd)/$src" ~/"$dst"
 done
+
 
 echo "symlinks updated"

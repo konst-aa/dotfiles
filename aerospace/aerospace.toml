@@ -6,8 +6,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 after-startup-command = [
-    'exec-and-forget $HOME/.config/aerospace/helper.sh startup'
-
+    'layout tiles vertical'
 ]
 
 exec-on-workspace-change = [
@@ -16,6 +15,8 @@ exec-on-workspace-change = [
 
 [mode.main.binding]
     cmd-enter = "exec-and-forget open -n /Applications/kitty.app"
+    cmd-shift-c = "exec-and-forget $HOME/.config/aerospace/helper.sh startup"
+    cmd-ctrl-shift-c = "reload-config"
 
     cmd-left = 'focus left'
     cmd-down = 'focus down'
@@ -56,6 +57,15 @@ exec-on-workspace-change = [
     cmd-shift-9 = 'move-node-to-workspace 9'
     cmd-shift-0 = 'move-node-to-workspace 10'
 
+    cmd-ctrl-shift-left = 'move-workspace-to-monitor left'
+    cmd-ctrl-shift-down = 'move-workspace-to-monitor down'
+    cmd-ctrl-shift-up = 'move-workspace-to-monitor up'
+    cmd-ctrl-shift-right = 'move-workspace-to-monitor right'
+
+    cmd-ctrl-left =  'focus-monitor left'
+    cmd-ctrl-down =  'focus-monitor down'
+    cmd-ctrl-up =    'focus-monitor up'
+    cmd-ctrl-right = 'focus-monitor right'
     # cmd-r = 'mode resize'
 
     # cmd-c = '''exec-and-forget open -na "Firefox" --args --new-tab "https://calendar.google.com/calendar/r"'''

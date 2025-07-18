@@ -1,9 +1,14 @@
 TERM=xterm-256color
 ZSH_CUSTOM=~/.config/oh-my-zsh
+
+# source ~/.oh-my-zsh/oh-my-zsh.sh
 plugins=(
   fzf
+  git
   nix-shell # doesn't exist without manual installation
 )
+autoload -Uz compinit
+compinit
 
 function pretty_branch() {
   # https://stackoverflow.com/questions/1593051/how-to-programmatically-determine-the-current-checked-out-git-branch
@@ -37,7 +42,7 @@ alias ls="lsd"
 alias cat="bat"
 alias tvi="nvim +Goyo"
 alias cshell="nix-shell -p chicken chickenPackages.chickenEggs.breadline"
-alias gitssh='ssh-add ~/.ssh/github'
+alias gitssh='ssh-add ~/.ssh/*github'
 alias astaff-gitlab='ssh-add ~/.ssh/astaff-gitlab'
 alias nineteeneightyfour="git filter-repo --invert-paths" # literally 1984
 
@@ -90,12 +95,21 @@ function nrebuild() {
 eval $(ssh-agent) > /dev/null
 
 
-eval $(fnm env)
-
 export EDITOR=nvim
 export PATH="/opt/google-cloud-cli/bin/:$PATH:$HOME/.dotnet/tools:$HOME/dotfiles/g-scripts:$HOME/Android/Sdk/tools/bin:/usr/local/go/bin:$HOME/.local/bin"
 
+# docker
+export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
+
+# ADB (G.O.A.T.)
+export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
+
 export PATH=/usr/local/cuda-12.2/bin${PATH:+:${PATH}}
+
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+# export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+
 # export FZF_DEFAULT_COMMAND="find ."
 
 # disable sort when completing `git checkout`
@@ -108,7 +122,6 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # app-specific
 # Set up fzf key bindings and fuzzy completion
 
-command -v fzf &> /dev/null && source <(fzf --zsh)
 
 if test -n "$KITTY_INSTALLATION_DIR"; then
     export KITTY_SHELL_INTEGRATION="enabled"
@@ -122,6 +135,24 @@ if [ -f /opt/homebrew/bin/brew ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
+if [ -f $(command -v fzf) ]; then
+    source <(fzf --zsh)
+fi
+
+# big boy postgres user
+export PSQL_PAGER='pspg'
+
+# fnm
+FNM_PATH="/Users/konst/Library/Application Support/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/Users/konst/Library/Application Support/fnm:$PATH"
+  eval "`fnm env`"
+fi
+
+if command -v fnm &> /dev/null; then
+    eval $(fnm env)
+fi
+
 [ -f ~/.ghcup/env ] && source ~/.ghcup/env # ghcup-env
 
 export PATH
@@ -130,4 +161,5 @@ export PATH
 [ -f "~/.cargo/env" ] && source "~/.cargo/env"
 
 [ -f ".local/bin/env" ] && source "$HOME/.local/bin/env"
+
 

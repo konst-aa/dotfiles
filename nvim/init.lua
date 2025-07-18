@@ -25,61 +25,110 @@ require("paq") {
     "junegunn/goyo.vim",
     "preservim/vim-pencil",
     "junegunn/limelight.vim",
-     {
-         "neoclide/coc.nvim",
-         build = "npm ci",
-     },
+     -- {
+     --     "neoclide/coc.nvim",
+     --     build = "npm ci",
+     -- },
     "tpope/vim-commentary",
     "preservim/nerdtree",
     "ryanoasis/vim-devicons",
-    {
-        "github/copilot.vim",
-        opt=true,
-    },
     "LnL7/vim-nix",
-    "nvim-telescope/telescope.nvim",
+    -- "nvim-telescope/telescope.nvim",
+    "folke/snacks",
     "nvim-lua/plenary.nvim",
     "neovimhaskell/haskell-vim",
     "justinmk/vim-sneak",
     "OmniSharp/omnisharp-vim",
     "junegunn/vim-easy-align",
-    "konst-aa/luawiki",
+    -- "konst-aa/luawiki",
+    "hrsh7th/nvim-cmp",
+    "hrsh7th/cmp-nvim-lsp",
+    "nvim-treesitter/nvim-treesitter",
+    "nvim-tree/nvim-web-devicons",
+    "romgrk/barbar.nvim",
+    "yetone/avante.nvim",
+    "MunifTanjim/nui.nvim",
+    "zbirenbaum/copilot.lua",
+     "Plabrum/org-markdown"
+
     -- "jls83/vimwiki", -- 43 commits behind as of May 2024
 }
 
-local builtin = require('telescope.builtin')
-local lspconfig = require('lspconfig')
--- lspconfig.scheme_langserver.setup {}
 
--- require("mason").setup()
+-- vim.env.FZF_DEFAULT_COMMAND = 'fd --type f --hidden --follow --exclude .git'
 
-require("my-conqueror")
-require("line")
+
+-- local lspconfig = require('lspconfig')
+require("my-lsps")
+
+-- require("notion")
+-- require("my-conqueror")
+-- require("line")
 require("align")
 require("nvim-autopairs").setup {}
-require("luawiki") .setup {}
+-- require("luawiki").setup {}
+require("action-tags")
+require("copilot").setup({
+  suggestion = {
+    auto_trigger = false, -- disables automatic suggestions
+    keymap = {
+      accept = "<C-H>", -- manually trigger and accept suggestion
+      next = "<C-J>",
+      prev = "<C-K>",
+      dismiss = "<C-L>",
+    },
+  },
+  panel = { enabled = false },
+})
+require("avante").setup {
+provider = "copilot",
+}
+
+require("org_markdown").setup {
+  keymaps = {
+    capture = "<leader>on",
+    agenda = "<leader>ov",
+    find_file = "<leader>of",
+    refile_to_file = "<leader>or",
+  },
+  picker = "telescope", -- or "snacks"
+  window_method = "float", -- or "horizontal"
+  captures = {
+    default_template = "inbox",
+    templates = {
+      inbox = {
+        file = "~/notes/inbox.md",
+        heading = "Inbox",
+        template = "- [ ] %t %?",
+      },
+    },
+}
+}
+
 
 -- require("mylspconfig")
 
-vim.g.coc_global_extensions = {
-    "coc-json",
-    "coc-git",
-    "coc-lua",
-    "coc-pyright",
-    "coc-clangd"
-}
+-- vim.g.coc_global_extensions = {
+--     "coc-json",
+--     "coc-git",
+--     "coc-lua",
+--     "coc-pyright",
+--     "coc-clangd"
+-- }
 
-local builtin = require('telescope.builtin')
+
+require("my-treesitter")
+require("my-telescope")
+require("my-barbar")
+
+
 
 require("line")
 require("align")
-require("luawiki").setup {}
+-- require("luawiki").setup {}
+
 
 -- keybinds
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 -- EasyAlign
 vim.cmd "nmap ga <Plug>(EasyAlign)"
@@ -152,7 +201,7 @@ vim.cmd "nnoremap <leader>ew :noh<CR>"
 
 vim.cmd "nnoremap <C-]> :FZF<CR>"
 
-vim.cmd "nnoremap + :NERDTree<CR>"
+vim.cmd "nnoremap + :NERDTreeToggle<CR>"
 
 vim.cmd "nnoremap <leader>fo :Format<CR>"
 
@@ -163,10 +212,12 @@ vim.cmd "inoremap <M-d> <C-O>x"
 vim.cmd "nnoremap <C-g> :Goyo<CR>"
 
 -- nnoremap <C-x> :bd<CR>
-vim.cmd "nnoremap <C-x> :bp<bar>sp<bar>bn<bar>bd<CR>"
-vim.cmd "nnoremap <C-o> :bp<CR>"
-vim.cmd "nnoremap <C-p> :bn<CR>"
+vim.cmd "nnoremap <C-x> :BufferClose<CR>"
+vim.cmd "nnoremap <C-l> :BufferNext<CR>"
+vim.cmd "nnoremap <C-h> :BufferPrevious<CR>"
 
+vim.cmd "nnoremap <C-j> :cnext<cr>"
+vim.cmd "nnoremap <C-k> :cprev<cr>"
 
 if vim.fn.executable('scmindent') + vim.fn.executable('racket') == 2 then
     vim.cmd "autocmd filetype lisp,scheme setlocal equalprg=scmindent"
@@ -199,8 +250,7 @@ vim.g["material_theme_style"] = "ocean"
 vim.g["material_terminal_italics"] = 1
 vim.cmd "colorscheme material"
 
-vim.g["airline#extensions#tabline#enabled"] = 1
-vim.g["airline#extensions#tabline#formatter"] = "unique_tail_improved"
+-- vim.g["airline#extensions#tabline#formatter"] = "unique_tail_improved"
 
 local function aesthetics()
     set.expandtab = true
@@ -216,6 +266,11 @@ local function aesthetics()
     -- vim.cmd "autocmd FileType haskell setlocal shiftwidth=2 tabstop=2"
     vim.cmd "syntax enable"
     vim.cmd "filetype plugin indent on"
+    -- Auto-resize windows when Neovim is resized
+    vim.api.nvim_create_autocmd("VimResized", {
+      pattern = "*",
+      command = "wincmd =",
+    })
 
     -- aesthetics
     vim.cmd "set noshowmode"
@@ -246,6 +301,7 @@ local function aesthetics()
     set.scrolloff = 12
 end
 
+
 local function goyo_enter()
     vim.cmd "Limelight"
     vim.cmd "set showmode"
@@ -275,11 +331,14 @@ end
 vim.api.nvim_create_autocmd("User", { pattern = "GoyoEnter", callback = goyo_enter })
 vim.api.nvim_create_autocmd("User", { pattern = "GoyoLeave", callback = goyo_leave })
 
-
--- vim.cmd([[
--- autocmd! User GoyoEnter nested :lua goyo_enter()
--- autocmd! User GoyoLeave nested :lua goyo_leave()
--- ]])
+-- vim.api.nvim_create_autocmd('FileType', {
+--     pattern = 'markdown',
+--     callback = function()
+--         vim.opt_local.autoindent = false
+--         vim.opt_local.smartindent = false
+--         vim.opt_local.cindent = false
+--     end
+-- })
 
 aesthetics()
 
